@@ -1,0 +1,78 @@
+<div>
+  <div ng-app="myapp" class="row">
+  <div class="col-sm-12">
+  <h3>{{title}}</h3>
+  <hr/>
+  <mat-card>
+  <form (ngSubmit)="adicionar()" [formGroup]="formulario">
+  <div class="col-sm-12">
+  <mat-form-field class="row col-sm-2">
+  <input id="id" readonly name="id_produtogroup" matInput  placeholder="Id" formControlName="id_produtogroup"> 
+  </mat-form-field>
+  </div>
+  <div class="row col-sm-12">
+  <mat-form-field class="col-sm-5">
+  <input name="ds_produtogroup" ds_produtogroup matInput maxlength="50" placeholder="Grupo"  formControlName="ds_produtogroup"  >
+  <mat-error *ngIf=" formulario.get('ds_produtogroup').touched && !formulario.get('ds_produtogroup').valid">Este campo é obrigatorio</mat-error>
+  </mat-form-field>
+  </div>
+  <div>
+    <section class="col-sm-12">
+      <mat-checkbox name="do_inativo" matInput formControlName="do_inativo">Inativo</mat-checkbox>
+    </section>
+    </div>
+  <div class="col-sm-12 exemplo-right-align ">
+    <button type="submit" mat-flat-button color="primary"><mat-icon style="font-size:20px">save</mat-icon>Salvar</button>
+  </div>
+    </form>
+  </mat-card>
+  </div>
+    </div>
+  <mat-expansion-panel [expanded]="0">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Status
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-panel-description>
+    </mat-panel-description>
+    <div class="row">
+      <div class="col-sm-12">
+        <div row>
+          <mat-form-field class="row col-sm-4">
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Pesquisar">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+        </div>
+        <table mat-table class="exemplo-right-align" [dataSource]="listData" matSort style="width:100%" class="table-sm table-hover">
+          <ng-container matColumnDef="id_produtogroup">
+            <th class="" hidden mat-header-cell *matHeaderCellDef> ID </th>
+            <td mat-cell hidden *matCellDef="let element"> {{element.id_produtogroup}} </td>
+          </ng-container>
+          <ng-container matColumnDef="ds_produtogroup">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Grupo do Produto </th>
+            <td mat-cell *matCellDef="let element"> {{element.ds_produtogroup}} </td>
+          </ng-container>
+          <!-- Weight Column -->
+          <ng-container matColumnDef="do_inativo">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Inativo </th>
+            <td mat-cell *matCellDef="let element"> {{element.do_inativo}} </td>
+          </ng-container>
+          <ng-container matColumnDef="Operacao">
+            <th mat-header-cell *matHeaderCellDef>  </th>
+            <td style="text-align: right;" mat-cell *matCellDef="let element"><button class="btn btn-sm btn-primary" matTooltip="Editar" matTooltipPosition="above"
+               (click)="loadForm(element.id_produtogroup,element.ds_produtogroup,element.do_inativo)">
+              <span class="fas fa-pen"></span></button><button class="btn btn-sm btn-danger" matTooltip="Excluir" matTooltipPosition="above" (click)="delete(element.id_produtogroup)"><span class="fas fa-trash"></span></button> </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5,10, 20]" showFirstLastButtons></mat-paginator>
+      </div>
+  
+    </div>
+  
+  </mat-expansion-panel>
+  </div>
+  
+  

@@ -1,0 +1,40 @@
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="!(isHandset$ | async)">
+    <mat-toolbar>Menu</mat-toolbar>
+    
+    <mat-nav-list class="exemplo-right-align">
+      <a mat-list-item href="#">Link 1</a>
+      <a mat-list-item [routerLink]='["/imobilizado"]'>Contador</a>
+      <a mat-list-item [routerLink]='["/Grupo"]'>Grupo de Produto</a>
+      <a mat-list-item [routerLink]='["/Status"]'>Cadastro de status</a>
+      <a mat-list-item [routerLink]='["/Cartoes"]'>Cadastro de Cartoes</a>
+      <a mat-list-item [routerLink]='["/tp_contas"]'>Tipo de Contas</a>
+    </mat-nav-list>
+    
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button type="button"
+              aria-label="Toggle sidenav"
+              mat-icon-button
+              (click)="drawer.toggle()"
+              >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>SYS</span>
+    </mat-toolbar>
+    <div>
+      <div class=''>
+        <p></p>
+        <router-outlet></router-outlet>
+
+</div>
+    </div>
+
+    <!-- Add Content Here -->
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,128 @@
+<div>
+  <div ng-app="myapp" class="row">
+<div class="col-sm-12">
+<h3>{{title}}</h3>
+<hr/>
+<mat-card>
+<form (ngSubmit)="adicionar()" [formGroup]="formulario">
+<div class="col-sm-12">
+<mat-form-field class="row col-sm-1">
+<input id="id" readonly name="idtpconta" matInput  placeholder="Id" formControlName="idcartao"> 
+</mat-form-field>
+</div>
+<div class=" row col-sm-12">
+<mat-form-field class="col-sm-4">
+<input name="descricao" descricao   matInput maxlength="50" placeholder="Descrição tipo de conta" required formControlName="descricao"/>
+<mat-error *ngIf="formulario.get('descricao').touched && !formulario.get('descricao').valid">Este campo é obrigatorio</mat-error>
+</mat-form-field>
+<mat-form-field class="col-sm-3">
+<input  mask='0000-0000-0000-0000'  name="numero" numero  matInput maxlength="19" placeholder="Numero do cartão" required formControlName="numero"/>
+<mat-icon matSuffix color="primary" >credit_card</mat-icon>
+<mat-error *ngIf="formulario.get('numero').touched && !formulario.get('numero').valid">Este campo é obrigatorio</mat-error>
+</mat-form-field>
+<mat-form-field class="col-sm-2">
+<input type="text" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"  placeholder="Limite" limite name="limite" formControlName="limite"   autocomplete="off" maxlength="50" class="exemplo-right-align dinheiro" required   matInput>
+<mat-error *ngIf="formulario.get('limite').touched && !formulario.get('limite').valid">Este campo é obrigatorio</mat-error>
+<mat-error *ngIf="formulario.get('limite').value == 0">Este campo Não pode ser 0</mat-error>
+</mat-form-field>
+<mat-form-field class="col-sm-2">
+  <input type="text"  currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"  placeholder="Saldo" saldo name="saldo" formControlName="saldo"  autocomplete="off" maxlength="50" class="exemplo-right-align dinheiro" required  matInput>
+  <mat-error *ngIf="formulario.get('limite').touched && !formulario.get('limite').valid">Este campo é obrigatorio</mat-error>
+  <mat-error *ngIf="formulario.get('limite').value == 0">Este campo Não pode ser 0</mat-error>
+  </mat-form-field>
+</div>
+<div class=" row col-sm-12">
+<mat-form-field class="col-sm-2 col-xl-2">
+<input mask='00' type="number"  matInput maxlength="2" min="1" max="31" placeholder="Dia de fechamento" name="dtfechamento" dtfechamento formControlName="dtfechamento" autocomplete="off" required class="exemplo-right-align dinheiro" >
+<mat-icon matSuffix color="primary">event</mat-icon>
+</mat-form-field>
+<mat-form-field class="col-sm-2 col-xl-2">
+    <input mask='00' type="number" matInput maxlength="2" min="1" max="31" placeholder="Dia de pagamento" name="dtpagamento" dtpagamento  autocomplete="off" class="exemplo-right-align dinheiro" required formControlName="dtpagamento" />
+    <mat-icon matSuffix color="primary">event</mat-icon>
+    </mat-form-field>
+</div>
+<div>
+<section class="col-sm-12">
+  <mat-checkbox name="inativo" matInput formControlName="inativo">Inativo</mat-checkbox>
+</section>
+</div>
+<div class="col-sm-12 exemplo-right-align ">
+  <button type="submit" mat-flat-button color="primary"><mat-icon style="font-size:20px">save</mat-icon>Salvar</button>
+</div>
+  </form>
+</mat-card>
+</div>
+  </div>
+<mat-expansion-panel [expanded]="0">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Lista de contas
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <mat-panel-description>
+  </mat-panel-description>
+  <div class="row">
+    <div class="col-sm-12">
+      <div row>
+        <mat-form-field class="row col-sm-4">
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Pesquisar">
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+      </div>
+      <table mat-table class="exemplo-right-align" [dataSource]="listData" matSort style="width:100%" class="table-sm table-hover">
+        <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+        <!-- Position Column -->
+        <ng-container matColumnDef="idcartao">
+          <th class="" hidden mat-header-cell *matHeaderCellDef> ID </th>
+          <td mat-cell hidden *matCellDef="let element"> {{element.idcartao}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="descricao">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Descrição </th>
+          <td mat-cell *matCellDef="let element"> {{element.descricao}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="numero">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Numero Cartão </th>
+          <td mat-cell *matCellDef="let element"> {{element.numero}} </td>
+        </ng-container>
+        <ng-container matColumnDef="limite">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Limite R$ </th>
+            <td mat-cell *matCellDef="let element"> {{element.limite |number:'1.2-2':'pt-BR'}} </td>
+          </ng-container>
+          <ng-container matColumnDef="saldo">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Saldo R$ </th>
+              <td mat-cell *matCellDef="let element"> {{element.saldo |number:'1.2-2':'pt-BR'}} </td>
+            </ng-container>
+        <!-- Weight Column -->
+        <ng-container matColumnDef="inativo">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Inativo </th>
+          <td mat-cell *matCellDef="let element"> {{element.inativo}} </td>
+        </ng-container>
+        <ng-container matColumnDef="dtfechamento">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Dia fechamento </th>
+            <td mat-cell *matCellDef="let element"> {{element.dtfechamento}} </td>
+          </ng-container>  
+          <ng-container matColumnDef="dtpagamento">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Dia pagamento </th>
+              <td mat-cell *matCellDef="let element"> {{element.dtpagamento}} </td>
+            </ng-container>
+        
+        <ng-container matColumnDef="Operacao">
+          <th mat-header-cell *matHeaderCellDef>  </th>
+          <td style="text-align: right;" mat-cell *matCellDef="let element"><button class="btn btn-sm btn-primary" matTooltip="Editar" matTooltipPosition="above"
+             (click)="loadForm(element.idcartao,element.descricao,element.numero,element.limite,element.saldo,element.dtfechamento,element.dtpagamento,element.inativo,element.tpcartao)">
+            <span class="fas fa-pen"></span></button><button class="btn btn-sm btn-danger" matTooltip="Excluir" matTooltipPosition="above" (click)="delete(element.idcartao)"><span class="fas fa-trash"></span></button> </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[5,10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+
+  </div>
+
+</mat-expansion-panel>
+</div>

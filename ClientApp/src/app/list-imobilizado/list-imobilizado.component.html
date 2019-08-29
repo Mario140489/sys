@@ -1,0 +1,266 @@
+<p></p>
+<div class="container-fluid">
+  <div id="scroler" #scroler> 
+    <h4>{{title}}</h4>
+    <hr/>
+
+    <div class="alert alert-dark">
+        <form (ngSubmit)="adicionar()" [formGroup]="formulario"> 
+       <div class="" align=" Right" >
+       <button class="btn-success" [hidden]="hidden===false" (click)="hidden = false" matTooltip="Adicionar"  mat-icon-button><mat-icon>add</mat-icon><a></a></button>
+       <button class="btn-danger   mr-1" [hidden]="hidden" (click)="hidden = true"  matTooltip="Cancelar" mat-icon-button><mat-icon>clear</mat-icon></button>
+       <button type="submit" class="btn-primary   " [hidden]="hidden"  matTooltip="Salvar" mat-icon-button> <mat-icon>save</mat-icon></button>
+      <p>
+      </div>
+      
+   <mat-accordion [hidden]="hidden">
+<mat-expansion-panel [expanded]="0">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Dados Cadastrais
+    </mat-panel-title>
+    <mat-panel-description>
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+<mat-form-field [hidden]="true">
+<input matInput formControlName="id_imobilizado" placeholder="Input">
+</mat-form-field>
+<div class="row">
+<!--mat-form-field class="col-sm-3" >
+<mat-label>Desccrição do grupo</mat-label>
+<mat-select formControlName="id_produtogroup" >
+<mat-option>None</mat-option>
+<mat-option value="option1">farmaceuticos </mat-option>
+<mat-option value="option2">carros</mat-option>
+<mat-option value="option3">casa</mat-option>
+</mat-select>
+</mat-form-field-->
+<mat-form-field class="col-sm-3" >
+<input matInput maxlength="150" formControlName="ds_localizacao"  placeholder="Localização do bem">
+</mat-form-field>
+<mat-form-field class="col-sm-3" >
+<input matInput maxlength="27" mask="000.000.000.000.000.000.000"  formControlName="nr_nf" placeholder="Nota fiscal">
+</mat-form-field>
+<mat-form-field class="col-sm-3" >
+<input matInput maxlength="150"  placeholder="Fornecedor" formControlName="ds_fornecedor" >
+</mat-form-field>
+<mat-form-field  class="col-sm-3" >
+<input type="date"  placeholder="Data Aquisição" matInput formControlName="dt_aquisicao" >
+</mat-form-field>
+<mat-form-field class="col-sm-3" >
+<input matInput maxlength="100" placeholder="Registro" formControlName="ds_registro">
+</mat-form-field>
+<mat-form-field class="col-sm-3" >
+<input matInput maxlength="150"  placeholder="Item" formControlName="ds_item">
+</mat-form-field>
+<!-->mat-form-field class="col-sm-3" >
+<input matInput maxlength="150"  placeholder="Detalhe e tamanho" formControlName="ds_detalhe">
+</mat-form-field>
+<mat-form-field class="col-sm-3" >
+<input matInput maxlength="100" placeholder="Material" formControlName="ds_material">
+</mat-form-field>
+<mat-form-field class="col-sm-3" >
+<input matInput maxlength="150"  placeholder="Cor" formControlName="ds_cor">
+</mat-form-field>
+
+<mat-form-field class="col-sm-3" >
+<mat-label>Estado do item</mat-label>
+<mat-select formControlName="id_status" >
+<mat-option>None</mat-option>
+<mat-option value="option1">Bom </mat-option>
+<mat-option value="option2">Ruim</mat-option>
+<mat-option value="option3">Mediano</mat-option>
+</mat-select>
+</mat-form-field>
+<mat-form-field class="col-sm-3" >
+<input matInput maxlength="50" (keyup)="soma_alt()" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" placeholder="Valor Aquisição" formControlName="nr_vlaquisicao">
+</mat-form-field>
+<mat-form-field class="col-sm-3" >
+<input matInput maxlength="50" (keyup)="soma_alt()" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" placeholder="Valor Recuperável" formControlName="nr_vlrecuperavel"> 
+</mat-form-field>
+<mat-form-field class="col-sm-3" >
+<input  maxlength="50" matInput  currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"  placeholder="Valor Depreciável" formControlName="nr_vldepreciavel">
+</mat-form-field>
+<mat-form-field class="col-sm-3">
+    <ngx-mat-file-input formControlName="bol_imagem" placeholder="Imagem do bem" ></ngx-mat-file-input>
+    <mat-icon matSuffix>camera_enhance</mat-icon>
+  </mat-form-field>
+  <section class="col-sm-12">
+<mat-checkbox name="inativo" matInput formControlName="inativo">Inativo</mat-checkbox>
+</section-->
+</div>
+</mat-expansion-panel>
+<div>
+<!--mat-expansion-panel>
+  <mat-expansion-panel-header (click)="scroll(scroler)">
+    <mat-panel-title>
+   Dados Fiscais
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  
+<div class="row">
+<mat-form-field  class="col-sm-3" >
+<input type="date"  placeholder="Data Fiscal" matInput formControlName="dt_fiscal" >
+</mat-form-field>
+<mat-form-field class="col-sm-3" >
+<input mask="0000000" maxlength="8" (keyup)="soma_fiscal()" placeholder="Vida Útil Fiscal(anos)" matInput formControlName="nr_vida_util" >
+</mat-form-field>
+<mat-form-field class="col-sm-3" >
+<input matInput currencyMask [options]="{ precision:4, thousands: '.', decimal: ',' ,prefix: ''}"  placeholder="Taxa Fiscal Anual" formControlName="nr_taxa_fiscal_anual">
+<span matSuffix>%</span>
+</mat-form-field>
+<mat-form-field class="col-sm-3" >
+<input  matInput currencyMask [options]="{ precision:4, prefix: '', thousands: '.', decimal: ',' }"  placeholder="Taxa Fiscal Mensal" formControlName="nr_taxa_fiscal_mensal">
+<span  matSuffix>%</span>
+</mat-form-field>
+<mat-form-field class="col-sm-3" >
+<input  matInput  placeholder="Status fiscal" formControlName="ds_status_fiscal">
+</mat-form-field>
+<mat-form-field  class="col-sm-3" >
+<input  matInput  currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" placeholder="Depreciação Acumulada Fiscal" formControlName="nr_depre_acumu_fiscal">
+</mat-form-field>
+<mat-form-field class="col-sm-3" >
+<input  matInput  currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" placeholder="Depreciação Mensal Fiscal" formControlName="nr_depre_mensal_fiscal">
+</mat-form-field>
+</div>
+</mat-expansion-panel-->
+</div>
+<!--mat-expansion-panel  (click)="scroll(scroler)">
+  <mat-expansion-panel-header (click)="scroll(scroler)">
+    <mat-panel-title>
+    Dados Societário(Reavaliações)
+    </mat-panel-title>
+    <mat-panel-description>
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+<div class="row">
+<mat-form-field  class="col-sm-3" >
+<input type="date" placeholder="Data Reavaliação" matInput formControlName="dt_reavaliacao" >
+</mat-form-field>
+<mat-form-field class="col-sm-3" >
+<input matInput currencyMask (keyup)="soma_reavaliacao()" [options]="{ prefix: 'R$', thousands: '.', decimal: ',' }" placeholder="Valor Reavaliado" formControlName="nr_vlreavaliado">
+</mat-form-field>
+<mat-form-field class="col-sm-3" >
+<input matInput  currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" placeholder="Valor Recuperável Reavaliado" formControlName="nr_vlrecu_reavaliado">
+</mat-form-field>
+<mat-form-field class="col-sm-3" >
+<input  matInput  currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" placeholder="Valor Depreciável  Reavaliado"formControlName="nr_vldepre_reavaliado">
+</mat-form-field>
+<mat-form-field class="col-sm-3" >
+<input  matInput type="number" (keyup)="calculo_contaxa()" placeholder="Vida Util Societária (Anos)" formControlName="nr_vida_util_societaria">
+</mat-form-field>
+<mat-form-field class="col-sm-3" >
+<input  matInput  currencyMask [options]="{ precision:4, prefix: '', thousands: '.', decimal: ',' }" placeholder="Taxa Societária Anual" formControlName="nr_taxa_societaria_anual">
+<span matSuffix>%</span>
+</mat-form-field>
+<mat-form-field class="col-sm-3" >
+<input  matInput  currencyMask [options]="{precision:4, prefix: '', thousands: '.', decimal: ',' }" placeholder="Taxa Societária Mensal" formControlName="nr_taxa_societaria_mensal">
+<span matSuffix>%</span>
+</mat-form-field>
+<mat-form-field class="col-sm-3" >
+<input  matInput  placeholder="Status Societária" formControlName="do_statussocietaria">
+</mat-form-field>
+<mat-form-field class="col-sm-3" >
+<input  matInput (keyup)="calculo_contaxa()" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" placeholder="Depreciaçõa Acumulada Inicial" formControlName="nr_depreacuinicial">
+</mat-form-field>
+<mat-form-field class="col-sm-3" >
+<input  matInput  currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" placeholder="Depreciaçõa Acumulada Societária" formControlName="nr_depreacumu_societaria">
+</mat-form-field>
+<mat-form-field class="col-sm-3" >
+<input  matInput  currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" placeholder="Depreciaçõa Mensal Societária" formControlName="nr_depremensal_societaria">
+</mat-form-field>
+</div>
+</mat-expansion-panel-->
+<p>
+</mat-accordion>
+      </form>
+        <div >
+        <mat-expansion-panel [expanded]="0">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Lista
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-panel-description>
+          </mat-panel-description>
+          <div class="row">
+            <div class="col-sm-12">
+              <div>
+                <mat-form-field class="row col-sm-4">
+                  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Pesquisar">
+                  <mat-icon matSuffix>search</mat-icon>
+                </mat-form-field>
+              </div>
+              <table mat-table class="exemplo-right-align" [dataSource]="listData" matSort style="width:100%" class="table-sm table-hover">
+                <ng-container matColumnDef="id_imobilizado">
+                  <th class="" hidden mat-header-cell *matHeaderCellDef> ID </th>
+                  <td mat-cell hidden *matCellDef="let element"> {{element.id_imobilizado}} </td>
+                </ng-container>
+                <ng-container matColumnDef="ds_localizacao">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Localização </th>
+                  <td mat-cell *matCellDef="let element"> {{element.ds_localizacao}}</td>
+                </ng-container>
+                <!-- Weight Column -->
+                <ng-container matColumnDef="nr_nf">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Nota Fiscal </th>
+                  <td mat-cell *matCellDef="let element"> {{element.nr_nf}} </td>
+                </ng-container>
+                <ng-container matColumnDef="ds_fornecedor">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Fornecedor </th>
+                  <td mat-cell *matCellDef="let element"> {{element.ds_fornecedor}} </td>
+                </ng-container>
+                <ng-container matColumnDef="dt_aquisicao">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Data de aquisição </th>
+                  <td mat-cell *matCellDef="let element"> {{element.dt_aquisicao |date:'shortDate'}} </td>
+                </ng-container>
+                <ng-container matColumnDef="ds_registro">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Registro </th>
+                  <td mat-cell *matCellDef="let element"> {{element.ds_registro}} </td>
+                </ng-container>
+                <ng-container matColumnDef="ds_item">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Item </th>
+                  <td mat-cell *matCellDef="let element"> {{element.ds_item}} </td>
+                </ng-container>
+                <ng-container matColumnDef="crm_Status.ds_status">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado </th>
+                  <td mat-cell *matCellDef="let element"> {{element.crm_Status.ds_status}} </td>
+                </ng-container>
+                <ng-container matColumnDef="crm_produtogroup.ds_produtogroup">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Grupo </th>
+                  <td mat-cell *matCellDef="let element"> {{element.crm_produtogroup.ds_produtogroup}} </td>
+                </ng-container>
+                <ng-container matColumnDef="nr_vljusto">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Valor Justo </th>
+                  <td mat-cell *matCellDef="let element"> {{element.nr_vljusto|number:'1.2-2':'pt-BR'}} </td>
+                </ng-container>
+                <ng-container matColumnDef="nr_vldepreciavel">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Valor Justo </th>
+                  <td mat-cell *matCellDef="let element"> {{element.nr_vldepreciavel|number:'1.2-2':'pt-BR'}} </td>
+                </ng-container>
+                <ng-container matColumnDef="nr_vlrecuperavel">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Valor Recuperavel </th>
+                  <td mat-cell *matCellDef="let element"> {{element.nr_vlrecuperavel |number:'1.2-2':'pt-BR'}} </td>
+                </ng-container>
+                <ng-container matColumnDef="nr_taxafiscal">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Taxa Fiscal </th>
+                  <td mat-cell *matCellDef="let element"> {{element.nr_taxafiscal|number:'1.2-2':'pt-BR'}} </td>
+                </ng-container>
+                <ng-container matColumnDef="Operacao">
+                  <th mat-header-cell *matHeaderCellDef>  </th>
+                  <td style="text-align: right;" mat-cell *matCellDef="let element"><button class="btn btn-sm btn-primary" matTooltip="Editar" matTooltipPosition="above"
+                     (click)="loadForm(element.id_produtogroup,element.ds_produtogroup,element.do_inativo)">
+                    <span class="fas fa-pen"></span></button><button class="btn btn-sm btn-danger" matTooltip="Excluir" matTooltipPosition="above" (click)="delete(element.id_produtogroup)"><span class="fas fa-trash"></span></button> </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+              <mat-paginator [pageSizeOptions]="[5,10, 20]" showFirstLastButtons></mat-paginator>
+            </div>
+        
+          </div>
+        
+        </mat-expansion-panel>
+      </div>
+      </div>
+  </div>
+ 
