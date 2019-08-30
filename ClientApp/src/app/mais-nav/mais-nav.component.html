@@ -18,23 +18,39 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-      <button type="button"
+      <div class="col-sm-9 left">
+      <button id="btn-menu" hidden = "true" class="btn1" type="button"
               aria-label="Toggle sidenav"
               mat-icon-button
               (click)="drawer.toggle()"
               >
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <span>SYS</span>
+           </button>
+      </div>
+      <div class="col-sm-3 right"  dropdown >
+        <label style="font-size:14px" id="user"></label>
+           <button id="button-basic"   dropdownToggle  type="button" mat-icon-button matTooltip="Login" aria-controls="dropdown-basic">
+        	<mat-icon>account_circle</mat-icon>
+           </button>
+           <div class="">
+           <ul id="dropdown-basic" style="font-size:12px" *dropdownMenu class="dropdown-menu  dropdown-menu-right "
+      role="menu" aria-labelledby="button-basic" >
+<mat-action-list dense  >
+  <button mat-list-item style="font-size:12px" [routerLink]='["/login"]' > {{menu}} </button>
+</mat-action-list>
+  </ul>
+           </div>
+      </div>
+   
     </mat-toolbar>
+    <p>
     <div>
-      <div class='container-fluid'>
-        <p></p>
-        <router-outlet></router-outlet>
+        <div style="height: 100%" class="container-fluid ">
+        <router-outlet>
+        </router-outlet>
+
 
 </div>
     </div>
-
-    <!-- Add Content Here -->
   </mat-sidenav-content>
 </mat-sidenav-container>
