@@ -3,7 +3,7 @@
   <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="!(isHandset$ | async)">
+      [opened]=navlateral>
     <mat-toolbar>Menu</mat-toolbar>
     
     <mat-nav-list class="exemplo-right-align">
@@ -36,7 +36,7 @@
            <ul id="dropdown-basic" style="font-size:12px" *dropdownMenu class="dropdown-menu  dropdown-menu-right "
       role="menu" aria-labelledby="button-basic" >
 <mat-action-list dense  >
-  <button mat-list-item style="font-size:12px" [routerLink]='["/login"]' > {{menu}} </button>
+  <button mat-list-item style="font-size:12px" [routerLink]='["/login"]' > Entrar </button>
 </mat-action-list>
   </ul>
            </div>

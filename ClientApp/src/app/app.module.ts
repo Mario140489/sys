@@ -14,6 +14,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
+import { TooltipModule,BsDropdownModule } from 'ngx-bootstrap';
 import {MatCheckboxModule,
   MatTreeModule,
   MatSelectModule,MatRadioModule,
@@ -31,7 +32,9 @@ import { MaisNavComponent } from './mais-nav/mais-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import br from '@angular/common/locales/br';
-import {NgxMaskModule} from 'ngx-mask-2'
+import {NgxMaskModule} from 'ngx-mask-2';
+import { LoginComponent } from './login/login.component';
+import {LoginService} from './service/login.service'
 registerLocaleData(br, 'pt-BR');
 //import $ from "JQuery";
 @NgModule({
@@ -41,6 +44,7 @@ registerLocaleData(br, 'pt-BR');
     CounterComponent,
     FetchDataComponent,
     MaisNavComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -48,10 +52,12 @@ registerLocaleData(br, 'pt-BR');
     FormsModule,
     
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: '', component: LoginComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
     ]),
     NgxMaskModule.forRoot(),
+    TooltipModule.forRoot(),
+    BsDropdownModule.forRoot(),
     MatTreeModule,
     MatProgressSpinnerModule,
     ReactiveFormsModule,
@@ -80,7 +86,7 @@ registerLocaleData(br, 'pt-BR');
     MatRadioModule,
     MaterialFileInputModule,
   ],
-  providers: [MatDatepickerModule,
+  providers: [MatDatepickerModule,AppComponent,LoginService,
     { provide: LOCALE_ID, useValue: "pt-br" }
   ],
   bootstrap: [AppComponent]

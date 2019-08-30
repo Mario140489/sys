@@ -36,6 +36,7 @@
     "install": "^0.13.0",
     "jquery": "^3.4.1",
     "jquery-mask-plugin": "^1.14.16",
+    "ngx-bootstrap": "^5.1.1",
     "ngx-currency": "^2.0.0",
     "ngx-mask": "^8.0.3",
     "ngx-mask-2": "^6.5.23",
