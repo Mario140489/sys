@@ -1,5 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import '~bootstrap/dist/css/bootstrap.min.css';
+@import './theme.scss';
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .salvocomsucesso {
@@ -18,4 +20,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   }
   h6{
     font-weight: bold;
+  }
+  button:focus {
+    outline: 0px dotted;
+    outline: 0px auto -webkit-focus-ring-color;
+  }
+  .right{
+    text-align: right;
   }
