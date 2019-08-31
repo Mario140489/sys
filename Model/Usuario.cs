@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace WebApplication4.Model
 {
-    public class Crm_produtogroup
+    public class Usuario
     {
         [Key]
-        public int id_produtogroup { get; set; }
-        public string ds_produtogroup { get; set; }
-        public bool do_inativo { get; set; }
+        public int IdUsuario { get; set; }
+        public string Nome { get; set; }
+        public string Login { get; set; }
+        public string Senha { get; set; }
     }
-
 }

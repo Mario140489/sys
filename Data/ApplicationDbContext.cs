@@ -15,11 +15,7 @@ namespace WebApplication4.Data
         {
         }
         //public DbSet<Cliente> Cliente { get; set; }
-        public DbSet<Contas> Contas { get; set; }
-        public DbSet<TpConta> TpConta { get; set; }
-        public DbSet<CartaoCredito> CartaoCredito { get; set; }
-        public DbSet<WebApplication4.Model.Crm_status> Crm_status { get; set; }
-        public DbSet<WebApplication4.Model.Crm_produtogroup> Crm_produtogroup { get; set; }
-        public DbSet<WebApplication4.Model.Crm_imobilizado> Crm_imobilizado { get; set; }
+        public DbSet<Usuario> Usuario { get; set; }
+    
     }
 }

@@ -1,0 +1,28 @@
+<div class="col-sm-12">
+    <div class="row align-items-center">
+    <div class="col-sm-2 col-md-3 col-lg-4"> </div>
+    <div class="col-sm-8 col-md-6 col-lg-4">
+      <mat-card > <mat-toolbar  color="primary">
+    <span>Login</span>
+  </mat-toolbar > 
+  <form [formGroup]="formulario">
+    <mat-form-field class="col-sm-12" style="margin-top:5px" appearance="outline">
+      <mat-label>Usuário</mat-label>
+      <input  required maxlength="50" matInput formControlName="user">
+      <mat-icon matSuffix color="primary">account_circle</mat-icon>
+    </mat-form-field>
+    <mat-form-field class="col-sm-12" style="margin-top:-20px" appearance="outline">
+      <mat-label>Senha</mat-label>
+      <input required maxlength="20" type="password" matInput formControlName="pws">
+      <mat-icon matSuffix color="primary">vpn_key</mat-icon>
+    </mat-form-field>
+    <div style='text-align:right;margin-top:-15px'>
+    <button  mat-raised-button (click)="login()" color="primary">Entrar</button>
+    </div>
+  </form>
+    </mat-card>
+    <p>
+  </div>
+    <div class="col-sm-2 col-md-3 col-lg-4">  </div>
+  </div>
+  </div>

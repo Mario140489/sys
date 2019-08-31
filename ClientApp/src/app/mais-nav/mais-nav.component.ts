@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./mais-nav.component.css']
 })
 export class MaisNavComponent {
-
+  navlateral =false;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches)
@@ -17,4 +17,9 @@ export class MaisNavComponent {
 
   constructor(private breakpointObserver: BreakpointObserver) {}
 
+
+
+  ngOnInit() {
+   
+  }
 }
