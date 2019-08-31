@@ -3,7 +3,7 @@
   <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="!(isHandset$ | async)">
+      [opened]= navlateral>
     <mat-toolbar>Menu</mat-toolbar>
     
     
@@ -18,9 +18,9 @@
     
   </mat-sidenav>
   <mat-sidenav-content>
-      <mat-toolbar color="accent">
+      <mat-toolbar color="primary">
     <div class="col-sm-9 left">
-      <button id="btn-menu"  class="btn1" type="button"
+      <button id="btn-menu" [hidden]=btnhiddens class="btn1" type="button"
               aria-label="Toggle sidenav"
               mat-icon-button
               (click)="drawer.toggle()"
@@ -29,7 +29,7 @@
            </button>
       </div>
       <div class="col-sm-3 right"  dropdown >
-        <label style="font-size:14px" id="user"></label>
+        <label style="font-size:14px" id="user"> {{user}}</label>
            <button id="button-basic"   dropdownToggle  type="button" mat-icon-button matTooltip="Login" aria-controls="dropdown-basic">
         	<mat-icon>account_circle</mat-icon>
            </button>

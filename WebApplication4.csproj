@@ -24,20 +24,22 @@
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="ClientApp\src\app\listacontas\**" />
     <Content Remove="$(SpaRoot)**" />
+    <Content Remove="ClientApp\src\app\listacontas\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ClientApp\src\app\listacontas\listaContas.component.ts" />
-    <None Remove="ClientApp\src\app\mais-nav\mais-nav.component.spec.ts" />
-    <None Remove="ClientApp\src\app\mais-nav\mais-nav.component.spec.ts" />
-    <None Remove="ClientApp\src\app\nav-menu\nav-menu.component.css" />
-    <None Remove="ClientApp\src\app\nav-menu\nav-menu.component.css" />
+    <EmbeddedResource Remove="ClientApp\src\app\listacontas\**" />
+    <None Remove="ClientApp\src\app\listacontas\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\src\app\listacontas\listaContas.component.ts" />
+    <None Remove="ClientApp\src\app\mais-nav\mais-nav.component.spec.ts" />
+    <None Remove="ClientApp\src\app\mais-nav\mais-nav.component.spec.ts" />
+    <None Remove="ClientApp\src\app\nav-menu\nav-menu.component.css" />
+    <None Remove="ClientApp\src\app\nav-menu\nav-menu.component.css" />
   </ItemGroup>
 
   <ItemGroup>
