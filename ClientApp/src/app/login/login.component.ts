@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm, FormGroup, FormBuilder,Validator} from '@angular/forms';
+import { MatPaginator, MatSort, MatTableDataSource, MatSnackBar, MatSnackBarConfig } from '@angular/material';
 import {MaisNavComponent} from '../mais-nav/mais-nav.component';
 import {LoginService} from '../service/login.service'
 
@@ -10,10 +11,13 @@ import {LoginService} from '../service/login.service'
 })
 export class LoginComponent implements OnInit {
   formulario:FormGroup;
-   
   constructor(private formBuider:FormBuilder, private maisnav:MaisNavComponent,
-     private service: LoginService) { }
-
+     private service: LoginService,private snackbar:MatSnackBar) { }
+     erros(msg){
+      this.snackbar.open("Error "+ msg, "", {
+        duration: 3000, panelClass: ['error'], verticalPosition: 'top', horizontalPosition: 'right'
+      });
+    }
   ngOnInit() {
     this.confFormulario();
   }
@@ -25,7 +29,16 @@ export class LoginComponent implements OnInit {
     this.service.Login(this.formulario.value)
     .subscribe(result =>{
       usu = result;
-    })
+      if (usu.length > 0){
+      this.maisnav.user = usu[0].nome;
+      this.maisnav.navlateral = true;
+      this.maisnav.btnhidden = false;
+      }
+      else{
+      let  msg:string = "Usuario não encontrado";
+        this.erros(msg);
+      }
+    }, error => this.erros(error));
     /*if(login == 'teste' && pws == '123456')
     {
       let doc =  document.getElementById('user');

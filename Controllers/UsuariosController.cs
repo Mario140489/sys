@@ -30,11 +30,14 @@ namespace WebApplication4.Controllers
         }
 
         [HttpPost("Login")]
-        public async Task<IActionResult> Login([FromBody] Usuario usuario)
+        public IActionResult Login([FromBody] Usuario usuario)
         {
-            var pessoa = _context.Usuario.Where(b => b.Login == "mario");
-
-            return Ok(pessoa);
+            var usuariologado = _context.Usuario.Where(b => b.Login == usuario.Login && b.Senha == usuario.Senha);
+            if (usuariologado == null)
+            {
+                return null;
+            }
+            return Ok(usuariologado) ;
         }
         // GET: api/Usuarios/5
         [HttpGet("{id}")]

@@ -9,7 +9,9 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./mais-nav.component.css']
 })
 export class MaisNavComponent {
+  user:string = "";
   navlateral =false;
+  btnhidden = true;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches)

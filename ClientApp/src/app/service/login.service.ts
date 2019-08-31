@@ -16,6 +16,6 @@ export class LoginService {
        "Login":data.user,
        "Senha":data.pws,
      }
-    return this.http.get(this.rootURL + 'api/Usuarios/');
+    return this.http.post(this.rootURL + 'api/Usuarios/Login',data);
    }
 }
