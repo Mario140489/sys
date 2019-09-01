@@ -23,8 +23,7 @@ import {MatCheckboxModule,
   MatSidenavModule, MatIconModule,
   MatGridListModule, MatListModule,
   MatCardModule, MatExpansionModule,
-  MatInputModule, MatFormFieldModule
-  
+  MatInputModule, MatFormFieldModule,
 } from '@angular/material';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { NgxCurrencyModule } from "ngx-currency"
@@ -54,6 +53,8 @@ registerLocaleData(br, 'pt-BR');
     RouterModule.forRoot([
       { path: '', component: LoginComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
+      { path: 'home', component: HomeComponent},
+      { path: 'Login', component: LoginComponent}
     ]),
     NgxMaskModule.forRoot(),
     TooltipModule.forRoot(),

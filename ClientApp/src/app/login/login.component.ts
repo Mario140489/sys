@@ -3,6 +3,7 @@ import { NgForm, FormGroup, FormBuilder,Validator} from '@angular/forms';
 import { MatPaginator, MatSort, MatTableDataSource, MatSnackBar, MatSnackBarConfig } from '@angular/material';
 import {MaisNavComponent} from '../mais-nav/mais-nav.component';
 import {LoginService} from '../service/login.service'
+import {Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ import {LoginService} from '../service/login.service'
 export class LoginComponent implements OnInit {
   formulario:FormGroup;
   constructor(private formBuider:FormBuilder, private maisnav:MaisNavComponent,
-     private service: LoginService,private snackbar:MatSnackBar) { }
+     private service: LoginService,private snackbar:MatSnackBar, private router:Router) { }
      erros(msg){
       this.snackbar.open("Error "+ msg, "", {
         duration: 3000, panelClass: ['error'], verticalPosition: 'top', horizontalPosition: 'right'
@@ -22,10 +23,10 @@ export class LoginComponent implements OnInit {
     this.confFormulario();
   }
   login(){
-    debugger;
     const login = this.formulario.get('user').value;
     const pws =  this.formulario.get('pws').value;
     let usu;
+    this.maisnav.boleano = false;
     this.service.Login(this.formulario.value)
     .subscribe(result =>{
       usu = result;
@@ -33,8 +34,11 @@ export class LoginComponent implements OnInit {
       this.maisnav.user = usu[0].nome;
       this.maisnav.navlateral = true;
       this.maisnav.btnhidden = false;
+      this.maisnav.boleano = true;
+      this.router.navigate(['home']);
       }
       else{
+        this.maisnav.boleano = true;
       let  msg:string = "Usuario não encontrado";
         this.erros(msg);
       }

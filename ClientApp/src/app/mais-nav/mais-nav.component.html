@@ -20,7 +20,7 @@
   <mat-sidenav-content>
       <mat-toolbar color="primary">
     <div class="col-sm-9 left">
-      <button id="btn-menu" [hidden]=btnhiddens class="btn1" type="button"
+      <button id="btn-menu" [hidden]=btnhidden class="btn1" type="button"
               aria-label="Toggle sidenav"
               mat-icon-button
               (click)="drawer.toggle()"
@@ -29,7 +29,7 @@
            </button>
       </div>
       <div class="col-sm-3 right"  dropdown >
-        <label style="font-size:14px" id="user"> {{user}}</label>
+        <label style="font-size:14px; magin-button:-2px"  id="user"> {{user}}</label>
            <button id="button-basic"   dropdownToggle  type="button" mat-icon-button matTooltip="Login" aria-controls="dropdown-basic">
         	<mat-icon>account_circle</mat-icon>
            </button>
@@ -47,6 +47,7 @@
     <div>
       <div class='container-fluid'>
         <p></p>
+        <div id="temp" [hidden]=boleano class="row spiner"><div class="col-sm-4"></div><div class="col-sm-4 " ><mat-spinner></mat-spinner></div><div class="col-sm-4"></div></div>
         <router-outlet></router-outlet>
 
 </div>

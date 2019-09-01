@@ -11,7 +11,6 @@ export class LoginService {
     this.rootURL= baseUrl;
    }
    Login(data){
-     debugger;
      data ={
        "Login":data.user,
        "Senha":data.pws,

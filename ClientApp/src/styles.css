@@ -29,3 +29,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   .left{
     text-align: left;
   }
+  .spiner{
+    position: absolute;
+    height: 91%;
+    width: 100%;
+    margin-top: -15px;
+    align-items: center;
+    z-index: 1;
+    background-color: lightslategray;
+    opacity: 0.6;
+  }
+  .mat-spinner {
+    position: relative;
+    margin-left: 40%;
+    margin-right: 60%;
+}
