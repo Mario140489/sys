@@ -13,5 +13,8 @@ namespace WebApplication4.Model
         public string Nome { get; set; }
         public string Login { get; set; }
         public string Senha { get; set; }
+        public DateTime DtCadastor { get; set; }
+        public DateTime DtUpdate { get; set; }
+        public virtual GrupoUsuario Id_GrupoUsuario {get;set;}
     }
 }
