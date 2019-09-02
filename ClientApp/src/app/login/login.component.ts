@@ -23,39 +23,42 @@ export class LoginComponent implements OnInit {
     this.confFormulario();
   }
   login(){
+    debugger;
     const login = this.formulario.get('user').value;
     const pws =  this.formulario.get('pws').value;
     let usu;
+
     this.maisnav.boleano = false;
     this.service.Login(this.formulario.value)
     .subscribe(result =>{
       usu = result;
       if (usu.length > 0){
-      this.maisnav.user = usu[0].nome;
-      this.maisnav.navlateral = true;
-      this.maisnav.btnhidden = false;
-      this.maisnav.boleano = true;
-      this.router.navigate(['home']);
+      let id = usu[0].id_GrupoUsuario
+      this.pegarmudulos(id,usu);
       }
       else{
-        this.maisnav.boleano = true;
-      let  msg:string = "Usuario não encontrado";
+        let  msg:string = "Usuario não encontrado";
         this.erros(msg);
+        this.maisnav.boleano = true;
       }
-    }, error => this.erros(error));
-    /*if(login == 'teste' && pws == '123456')
-    {
-      let doc =  document.getElementById('user');
-      doc.innerText = "José Mario vieira";
-     // let menulateral = document.getElementById('menulateral');
-     // menulateral.hidden=false;
-     this.maisnav.navlateral = true;
-      let btnmenu = document.getElementById('btn-menu');
-      btnmenu.hidden=false;
+    }, error => {this.erros(error);
+      this.maisnav.boleano = true;
+    });
+    
     }
-    else{
-  alert('teste');
-    }*/
+    pegarmudulos(id,usu){
+      let modulos
+      this.service.modules(id).subscribe(
+        resultado =>{
+          modulos = resultado
+          this.maisnav.modules = modulos;
+          this.maisnav.navlateral = true;
+          this.maisnav.btnhidden = false;
+          this.maisnav.user = usu[0].nome;
+          this.router.navigate(['home']);
+          this.maisnav.boleano = true;
+        }
+      )
     }
     confFormulario(){
      this.formulario =this.formBuider.group({

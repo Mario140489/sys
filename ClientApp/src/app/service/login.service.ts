@@ -17,4 +17,7 @@ export class LoginService {
      }
     return this.http.post(this.rootURL + 'api/Usuarios/Login',data);
    }
+   modules(id){
+     return this.http.get(this.rootURL + 'api/Modulos/' + id);
+   }
 }

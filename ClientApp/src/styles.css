@@ -31,16 +31,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   }
   .spiner{
     position: absolute;
-    height: 91%;
+    height: 100%;
     width: 100%;
-    margin-top: -15px;
     align-items: center;
     z-index: 1;
-    background-color: lightslategray;
+    background-color: black;
     opacity: 0.6;
   }
   .mat-spinner {
     position: relative;
-    margin-left: 40%;
-    margin-right: 60%;
+    margin-left: 50%;
+    margin-right: 50%;
 }

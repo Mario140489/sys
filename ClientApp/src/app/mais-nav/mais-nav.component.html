@@ -8,16 +8,12 @@
     
     
     <mat-nav-list class="exemplo-right-align">
-      <a mat-list-item href="#">Link 1</a>
-      <a mat-list-item [routerLink]='["/imobilizado"]'>Contador</a>
-      <a mat-list-item [routerLink]='["/Grupo"]'>Grupo de Produto</a>
-      <a mat-list-item [routerLink]='["/Status"]'>Cadastro de status</a>
-      <a mat-list-item [routerLink]='["/Cartoes"]'>Cadastro de Cartoes</a>
-      <a mat-list-item [routerLink]='["/tp_contas"]'>Tipo de Contas</a>
+    
     </mat-nav-list>
     
   </mat-sidenav>
   <mat-sidenav-content>
+      <div id="temp" class=" col-12 spiner"><mat-spinner></mat-spinner></div>
       <mat-toolbar color="primary">
     <div class="col-sm-9 left">
       <button id="btn-menu" [hidden]=btnhidden class="btn1" type="button"
@@ -29,15 +25,15 @@
            </button>
       </div>
       <div class="col-sm-3 right"  dropdown >
-        <label style="font-size:14px; magin-button:-2px"  id="user"> {{user}}</label>
+        <label style="font-size:14px"  id="user"> {{user}}</label>
            <button id="button-basic"   dropdownToggle  type="button" mat-icon-button matTooltip="Login" aria-controls="dropdown-basic">
         	<mat-icon>account_circle</mat-icon>
            </button>
            <div class="">
            <ul id="dropdown-basic" style="font-size:12px" *dropdownMenu class="dropdown-menu  dropdown-menu-right "
       role="menu" aria-labelledby="button-basic" >
-<mat-action-list dense  >
-  <button mat-list-item style="font-size:12px" [routerLink]='["/login"]' > {{menu}} </button>
+<mat-action-list dense *ngFor = "let modules of modules " >
+  <button mat-list-item style="font-size:12px"> {{modules.nome}} </button>
 </mat-action-list>
   </ul>
            </div>
@@ -47,7 +43,7 @@
     <div>
       <div class='container-fluid'>
         <p></p>
-        <div id="temp" [hidden]=boleano class="row spiner"><div class="col-sm-4"></div><div class="col-sm-4 " ><mat-spinner></mat-spinner></div><div class="col-sm-4"></div></div>
+        
         <router-outlet></router-outlet>
 
 </div>

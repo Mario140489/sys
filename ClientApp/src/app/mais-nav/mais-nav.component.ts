@@ -14,6 +14,7 @@ export class MaisNavComponent {
   navlateral =false;
   btnhidden = true;
   boleano = true;
+  modules = null;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches)
