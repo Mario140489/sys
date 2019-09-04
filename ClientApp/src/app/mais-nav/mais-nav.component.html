@@ -5,7 +5,8 @@
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]= navlateral>
     <mat-toolbar>Menu</mat-toolbar>
-    <mat-nav-list  class="exemplo-right-align">
+    <mat-nav-list class="exemplo-right-align" *ngFor = "let submodules of submodules">
+    <a mat-list-item [routerLink]=''><mat-icon mat-list-item style="font-size:20px">{{submodules.icon}}</mat-icon> {{submodules.nome}}</a>
     </mat-nav-list> 
   </mat-sidenav>
   <mat-sidenav-content>
