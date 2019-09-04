@@ -25,6 +25,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   }
   .right{
     text-align: right;
+    margin-top: 5px;
+    margin-right: -10px;
   }
   .left{
     text-align: left;
@@ -43,4 +45,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     margin-left: 45%;
     margin-right: 55%;
     margin-top: 20%;
+}
+.example-icon {
+  padding: 0 14px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
 }

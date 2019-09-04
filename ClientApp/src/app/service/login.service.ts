@@ -20,4 +20,7 @@ export class LoginService {
    modules(id){
      return this.http.get(this.rootURL + 'api/Modulos/' + id);
    }
+   SubModulos(id){
+     return this.http.get(this.rootURL + 'api/SubModulos/' + id)
+   }
 }

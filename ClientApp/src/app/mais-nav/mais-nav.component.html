@@ -5,35 +5,32 @@
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]= navlateral>
     <mat-toolbar>Menu</mat-toolbar>
-    
-    
-    <mat-nav-list class="exemplo-right-align">
-    
-    </mat-nav-list>
-    
+    <mat-nav-list  class="exemplo-right-align">
+    </mat-nav-list> 
   </mat-sidenav>
   <mat-sidenav-content>
       <div id="temp" [hidden] =boleano  class=" col-12 spiner"><mat-spinner></mat-spinner></div>
       <mat-toolbar color="primary">
-    <div class="col-sm-9 left">
+    <div class="col-sm-7 left">
       <button id="btn-menu" [hidden]=btnhidden class="btn1" type="button"
-              aria-label="Toggle sidenav"
+              aria-label="Togle sidenav"
               mat-icon-button
               (click)="drawer.toggle()"
               >
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
            </button>
       </div>
-      <div class="col-sm-3 right"  dropdown >
-        <label style="font-size:14px"  id="user"> {{user}}</label>
-           <button id="button-basic"   dropdownToggle  type="button" mat-icon-button matTooltip="Login" aria-controls="dropdown-basic">
-        	<mat-icon>account_circle</mat-icon>
-           </button>
+      <div class="col-sm-5 right"  dropdown >
+        <button  mat-icon-button><mat-icon >account_circle</mat-icon> </button>
+           <label style="font-size:14px"  id="user">{{user}}</label>
+           <button id="button-basic" *ngIf="user.length > 0" style="margin-right: -25px"  dropdownToggle  type="button" mat-icon-button matTooltip="Menu" aria-controls="dropdown-basic">
+              <mat-icon>keyboard_arrow_down</mat-icon>
+          </button>
            <div class="">
-           <ul id="dropdown-basic" style="font-size:12px" *dropdownMenu class="dropdown-menu  dropdown-menu-right "
+           <ul  id="dropdown-basic" style="font-size:12px"  *dropdownMenu class="dropdown-menu  dropdown-menu-right "
       role="menu" aria-labelledby="button-basic" >
 <mat-action-list dense *ngFor = "let modules of modules " >
-  <button mat-list-item style="font-size:12px"> {{modules.nome}} </button>
+  <button (click)="CarregaModules(modules.id_Modulos)" mat-list-item style="font-size:14px"><mat-icon mat-list-item style="font-size:20px">{{modules.icon}}</mat-icon> {{modules.nome}}</button>
 </mat-action-list>
   </ul>
            </div>
