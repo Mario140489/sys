@@ -12,68 +12,56 @@ namespace WebApplication4.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsuariosController : ControllerBase
+    public class FormulariosController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
-        public UsuariosController(ApplicationDbContext context)
+        public FormulariosController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Usuarios
+        // GET: api/Formularios
         [HttpGet]
-        public IEnumerable<Usuario> GetUsuario()
+        public IEnumerable<Formularios> GetFormularios()
         {
-            var teste = _context.Usuario;
-            return teste;
+            return _context.Formularios;
         }
 
-        [HttpPost("Login")]
-        public IActionResult Login([FromBody] Usuario usuario)
-        {
-
-            var usuariologado = _context.Usuario.Where(b => b.Login == usuario.Login && b.Senha == usuario.Senha);
-            if (usuariologado == null)
-            {
-                return null;
-            }
-            return Ok(usuariologado) ;
-        }
-        // GET: api/Usuarios/5
+        // GET: api/Formularios/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetUsuario([FromRoute] int id)
+        public  IActionResult GetFormularios([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var usuario = await _context.Usuario.FindAsync(id);
+            var formularios =  _context.Formularios.Where(b => b.Id_SubModulos == id);
 
-            if (usuario == null)
+            if (formularios == null)
             {
                 return NotFound();
             }
 
-            return Ok(usuario);
+            return Ok(formularios);
         }
 
-        // PUT: api/Usuarios/5
+        // PUT: api/Formularios/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUsuario([FromRoute] int id, [FromBody] Usuario usuario)
+        public async Task<IActionResult> PutFormularios([FromRoute] int id, [FromBody] Formularios formularios)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != usuario.IdUsuario)
+            if (id != formularios.IdFormularios)
             {
                 return BadRequest();
             }
 
-            _context.Entry(usuario).State = EntityState.Modified;
+            _context.Entry(formularios).State = EntityState.Modified;
 
             try
             {
@@ -81,7 +69,7 @@ namespace WebApplication4.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UsuarioExists(id))
+                if (!FormulariosExists(id))
                 {
                     return NotFound();
                 }
@@ -94,45 +82,45 @@ namespace WebApplication4.Controllers
             return NoContent();
         }
 
-        // POST: api/Usuarios
+        // POST: api/Formularios
         [HttpPost]
-        public async Task<IActionResult> PostUsuario([FromBody] Usuario usuario)
+        public async Task<IActionResult> PostFormularios([FromBody] Formularios formularios)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.Usuario.Add(usuario);
+            _context.Formularios.Add(formularios);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUsuario", new { id = usuario.IdUsuario }, usuario);
+            return CreatedAtAction("GetFormularios", new { id = formularios.IdFormularios }, formularios);
         }
 
-        // DELETE: api/Usuarios/5
+        // DELETE: api/Formularios/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUsuario([FromRoute] int id)
+        public async Task<IActionResult> DeleteFormularios([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var usuario = await _context.Usuario.FindAsync(id);
-            if (usuario == null)
+            var formularios = await _context.Formularios.FindAsync(id);
+            if (formularios == null)
             {
                 return NotFound();
             }
 
-            _context.Usuario.Remove(usuario);
+            _context.Formularios.Remove(formularios);
             await _context.SaveChangesAsync();
 
-            return Ok(usuario);
+            return Ok(formularios);
         }
 
-        private bool UsuarioExists(int id)
+        private bool FormulariosExists(int id)
         {
-            return _context.Usuario.Any(e => e.IdUsuario == id);
+            return _context.Formularios.Any(e => e.IdFormularios == id);
         }
     }
 }

@@ -9,13 +9,13 @@
     <a style="text-align: right" (click)="mostrarform(submodules.id_SubModulos)" mat-list-item [routerLink]=''><mat-icon mat-list-item style="font-size:20px">{{submodules.icon}} </mat-icon> {{submodules.nome}}
     <mat-icon *ngIf="submodules.id_SubModulos != index" class="alinhamento">expand_more</mat-icon>
     <mat-icon *ngIf="submodules.id_SubModulos === index" class="alinhamento">expand_less</mat-icon></a>
-    <mat-list *ngIf="submodules.id_SubModulos === index">
-      <mat-list-item>Item 1</mat-list-item>
+    <div *ngIf="submodules.id_SubModulos === index" >
+    <mat-list *ngFor = "let form of buscarform(submodules.id_SubModulos)" >
+      <mat-list-item>{{form.nome}}</mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item>Item 2</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>Item 3</mat-list-item>
+
     </mat-list>
+  </div>
     <mat-divider></mat-divider>
     </mat-nav-list> 
   </mat-sidenav>

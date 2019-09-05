@@ -30,14 +30,14 @@ namespace WebApplication4.Controllers
 
         // GET: api/SubModulos/5
         [HttpGet("{id}")]
-        public IActionResult GetSubModulos([FromRoute] int id)
+        public  IActionResult GetSubModulos([FromRoute] int id)
         {
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
-            var subModulos =  _context.SubModulos.Where(b => b.Id_Modulos == id);
+            var subModulos = _context.SubModulos.Where(b => b.Id_Modulos == id);
 
             if (subModulos == null)
             {

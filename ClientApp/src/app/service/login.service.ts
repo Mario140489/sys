@@ -23,4 +23,7 @@ export class LoginService {
    SubModulos(id){
      return this.http.get(this.rootURL + 'api/SubModulos/' + id)
    }
+   pegarformularios(id){
+     return this.http.get(this.rootURL + 'api/Formularios/' +id )
+   }
 }

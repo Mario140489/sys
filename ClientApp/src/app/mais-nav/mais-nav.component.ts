@@ -18,6 +18,7 @@ export class MaisNavComponent {
   boleano = true;
   modules = null;
   submodules = null;
+  form = null
   index =0;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -35,7 +36,6 @@ export class MaisNavComponent {
    this.router.navigate(['Login']);
   }
   CarregaModules(id){
- debugger;
           this.service.SubModulos(id).subscribe(result =>{
             this.submodules = result;
             if (this.submodules.length > 0){
@@ -48,6 +48,13 @@ export class MaisNavComponent {
             }
           }, error =>{this.erros(error)});
           
+  }
+  buscarform(id){
+    debugger;
+   this.service.pegarformularios(id).subscribe(result =>{
+    this.form = result;
+   }
+    )
   }
   mostrarform(id){
     if(this.index === id)
