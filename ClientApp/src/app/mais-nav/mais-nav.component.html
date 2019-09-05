@@ -1,12 +1,22 @@
 
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+  <mat-sidenav color="accent"  #drawer class="sidenav" fixedInViewport="true"
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]= navlateral>
-    <mat-toolbar>Menu</mat-toolbar>
-    <mat-nav-list class="exemplo-right-align" *ngFor = "let submodules of submodules">
-    <a mat-list-item [routerLink]=''><mat-icon mat-list-item style="font-size:20px">{{submodules.icon}}</mat-icon> {{submodules.nome}}</a>
+      <mat-toolbar color="accent">Menu</mat-toolbar>
+    <mat-nav-list color="accent"  class="exemplo-right-align" *ngFor = "let submodules of submodules">
+    <a style="text-align: right" (click)="mostrarform(submodules.id_SubModulos)" mat-list-item [routerLink]=''><mat-icon mat-list-item style="font-size:20px">{{submodules.icon}} </mat-icon> {{submodules.nome}}
+    <mat-icon *ngIf="submodules.id_SubModulos != index" class="alinhamento">expand_more</mat-icon>
+    <mat-icon *ngIf="submodules.id_SubModulos === index" class="alinhamento">expand_less</mat-icon></a>
+    <mat-list *ngIf="submodules.id_SubModulos === index">
+      <mat-list-item>Item 1</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Item 2</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Item 3</mat-list-item>
+    </mat-list>
+    <mat-divider></mat-divider>
     </mat-nav-list> 
   </mat-sidenav>
   <mat-sidenav-content>

@@ -18,6 +18,7 @@ export class MaisNavComponent {
   boleano = true;
   modules = null;
   submodules = null;
+  index =0;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches)
@@ -47,5 +48,14 @@ export class MaisNavComponent {
             }
           }, error =>{this.erros(error)});
           
+  }
+  mostrarform(id){
+    if(this.index === id)
+    {
+      this.index =0
+    }
+    else{
+   this.index = id;
+    }
   }
 }
