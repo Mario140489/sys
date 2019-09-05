@@ -30,11 +30,11 @@
         	<mat-icon>account_circle</mat-icon>
            </button>
            <div class="">
-           <ul id="dropdown-basic" style="font-size:12px" *dropdownMenu class="dropdown-menu  dropdown-menu-right "
+           <ul id="dropdown-basic"  *dropdownMenu class="dropdown-menu  dropdown-menu-right "
       role="menu" aria-labelledby="button-basic" >
-<mat-action-list dense *ngFor = "let modules of modules " >
-  <button mat-list-item style="font-size:12px"> {{modules.nome}} </button>
-</mat-action-list>
+<mat-action-list style="font-size: 14px" dense *ngFor = "let modules of modules " >
+  <button mat-list-item  [innerHTML]="modules.nome">  </button>
+  </mat-action-list>
   </ul>
            </div>
       </div>

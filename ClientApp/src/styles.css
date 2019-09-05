@@ -44,3 +44,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     margin-right: 55%;
     margin-top: 20%;
 }
+.mat-list-base[dense] .mat-list-item {
+  font-size: 14px;
+}
