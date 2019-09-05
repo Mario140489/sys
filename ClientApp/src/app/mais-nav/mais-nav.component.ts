@@ -18,8 +18,8 @@ export class MaisNavComponent {
   boleano = true;
   modules = null;
   submodules = null;
-  form = null
   index =0;
+  form = [];
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches)
@@ -39,8 +39,17 @@ export class MaisNavComponent {
           this.service.SubModulos(id).subscribe(result =>{
             this.submodules = result;
             if (this.submodules.length > 0){
-              this.navlateral = true;
-              this.btnhidden = false;
+              for(var i =0 ; i < this.submodules.length; i++)
+              {
+                this.service.pegarformularios(this.submodules[i].id_SubModulos).subscribe(
+                  resultado =>{
+                  this.form.push(resultado);
+                  this.navlateral = true;
+                  this.btnhidden = false;
+                  }
+                )
+              }
+          
             }
             else{
               let msg:string = "Nenhum Modulo ativo para seu Usuario";
@@ -48,13 +57,6 @@ export class MaisNavComponent {
             }
           }, error =>{this.erros(error)});
           
-  }
-  buscarform(id){
-    debugger;
-   this.service.pegarformularios(id).subscribe(result =>{
-    this.form = result;
-   }
-    )
   }
   mostrarform(id){
     if(this.index === id)

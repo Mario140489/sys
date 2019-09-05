@@ -6,11 +6,11 @@
       [opened]= navlateral>
       <mat-toolbar color="accent">Menu</mat-toolbar>
     <mat-nav-list color="accent"  class="exemplo-right-align" *ngFor = "let submodules of submodules">
-    <a style="text-align: right" (click)="mostrarform(submodules.id_SubModulos)" mat-list-item [routerLink]=''><mat-icon mat-list-item style="font-size:20px">{{submodules.icon}} </mat-icon> {{submodules.nome}}
+    <a style="text-align: right" (click)="mostrarform(submodules.id_SubModulos)" mat-list-item ><mat-icon mat-list-item style="font-size:20px">{{submodules.icon}} </mat-icon> {{submodules.nome}}
     <mat-icon *ngIf="submodules.id_SubModulos != index" class="alinhamento">expand_more</mat-icon>
     <mat-icon *ngIf="submodules.id_SubModulos === index" class="alinhamento">expand_less</mat-icon></a>
     <div *ngIf="submodules.id_SubModulos === index" >
-    <mat-list *ngFor = "let form of buscarform(submodules.id_SubModulos)" >
+    <mat-list *ngFor = "let form of form" >
       <mat-list-item>{{form.nome}}</mat-list-item>
       <mat-divider></mat-divider>
 
