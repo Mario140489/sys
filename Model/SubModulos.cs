@@ -1,20 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace WebApplication4.Model
 {
-    public class Modulos
+    public class SubModulos
     {
         [Key]
+        public int Id_SubModulos { get; set; }
         public int Id_Modulos { get; set; }
         public string Nome { get; set; }
-        public string icon { get; set; }
-        [ForeignKey("GrupoUsuario")]
-        public int Id_GrupoUsuario { get; set; }
-        public virtual GrupoUsuario GrupoUsuario { get; set; }
+        public string Icon { get; set; }
+        public virtual Formularios Formularios { get; set; }
     }
 }

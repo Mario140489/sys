@@ -18,6 +18,7 @@ namespace WebApplication4.Data
         public DbSet<Usuario> Usuario { get; set; }
         public DbSet<GrupoUsuario> GrupoUsuario { get; set; }
         public DbSet<Modulos> Modulos { get; set; }
-    
+        public DbSet<SubModulos> SubModulos { get; set; }
+        public DbSet<Formularios> Formularios { get; set; }
     }
 }

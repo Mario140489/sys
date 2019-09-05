@@ -23,7 +23,6 @@ export class LoginComponent implements OnInit {
     this.confFormulario();
   }
   login(){
-    debugger;
     const login = this.formulario.get('user').value;
     const pws =  this.formulario.get('pws').value;
     let usu;
@@ -52,8 +51,6 @@ export class LoginComponent implements OnInit {
         resultado =>{
           modulos = resultado
           this.maisnav.modules = modulos;
-          this.maisnav.navlateral = true;
-          this.maisnav.btnhidden = false;
           this.maisnav.user = usu[0].nome;
           this.router.navigate(['home']);
           this.maisnav.boleano = true;

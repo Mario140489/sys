@@ -12,68 +12,56 @@ namespace WebApplication4.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsuariosController : ControllerBase
+    public class SubModulosController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
-        public UsuariosController(ApplicationDbContext context)
+        public SubModulosController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Usuarios
+        // GET: api/SubModulos
         [HttpGet]
-        public IEnumerable<Usuario> GetUsuario()
+        public IEnumerable<SubModulos> GetSubModulos()
         {
-            var teste = _context.Usuario;
-            return teste;
+            return _context.SubModulos;
         }
 
-        [HttpPost("Login")]
-        public IActionResult Login([FromBody] Usuario usuario)
-        {
-
-            var usuariologado = _context.Usuario.Where(b => b.Login == usuario.Login && b.Senha == usuario.Senha);
-            if (usuariologado == null)
-            {
-                return null;
-            }
-            return Ok(usuariologado) ;
-        }
-        // GET: api/Usuarios/5
+        // GET: api/SubModulos/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetUsuario([FromRoute] int id)
+        public  IActionResult GetSubModulos([FromRoute] int id)
         {
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+            var subModulos = _context.SubModulos.Where(b => b.Id_Modulos == id);
 
-            var usuario = await _context.Usuario.FindAsync(id);
-
-            if (usuario == null)
+            if (subModulos == null)
             {
                 return NotFound();
             }
 
-            return Ok(usuario);
+            return Ok(subModulos);
         }
 
-        // PUT: api/Usuarios/5
+        // PUT: api/SubModulos/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUsuario([FromRoute] int id, [FromBody] Usuario usuario)
+        public async Task<IActionResult> PutSubModulos([FromRoute] int id, [FromBody] SubModulos subModulos)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != usuario.IdUsuario)
+            if (id != subModulos.Id_SubModulos)
             {
                 return BadRequest();
             }
 
-            _context.Entry(usuario).State = EntityState.Modified;
+            _context.Entry(subModulos).State = EntityState.Modified;
 
             try
             {
@@ -81,7 +69,7 @@ namespace WebApplication4.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UsuarioExists(id))
+                if (!SubModulosExists(id))
                 {
                     return NotFound();
                 }
@@ -94,45 +82,45 @@ namespace WebApplication4.Controllers
             return NoContent();
         }
 
-        // POST: api/Usuarios
+        // POST: api/SubModulos
         [HttpPost]
-        public async Task<IActionResult> PostUsuario([FromBody] Usuario usuario)
+        public async Task<IActionResult> PostSubModulos([FromBody] SubModulos subModulos)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.Usuario.Add(usuario);
+            _context.SubModulos.Add(subModulos);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUsuario", new { id = usuario.IdUsuario }, usuario);
+            return CreatedAtAction("GetSubModulos", new { id = subModulos.Id_SubModulos }, subModulos);
         }
 
-        // DELETE: api/Usuarios/5
+        // DELETE: api/SubModulos/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUsuario([FromRoute] int id)
+        public async Task<IActionResult> DeleteSubModulos([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var usuario = await _context.Usuario.FindAsync(id);
-            if (usuario == null)
+            var subModulos = await _context.SubModulos.FindAsync(id);
+            if (subModulos == null)
             {
                 return NotFound();
             }
 
-            _context.Usuario.Remove(usuario);
+            _context.SubModulos.Remove(subModulos);
             await _context.SaveChangesAsync();
 
-            return Ok(usuario);
+            return Ok(subModulos);
         }
 
-        private bool UsuarioExists(int id)
+        private bool SubModulosExists(int id)
         {
-            return _context.Usuario.Any(e => e.IdUsuario == id);
+            return _context.SubModulos.Any(e => e.Id_SubModulos == id);
         }
     }
 }

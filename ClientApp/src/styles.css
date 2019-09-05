@@ -11,7 +11,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   color:white;
 }
 .exemplo-right-align {
-  text-align: right;
+  padding-top: 0px !important;
 }
 .fontclbranco{
   color:white;
@@ -25,6 +25,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   }
   .right{
     text-align: right;
+    margin-top: 5px;
+    margin-right: -10px;
   }
   .left{
     text-align: left;
@@ -44,6 +46,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     margin-right: 55%;
     margin-top: 20%;
 }
-.mat-list-base[dense] .mat-list-item {
-  font-size: 14px;
+.example-icon {
+  padding: 0 14px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
 }
