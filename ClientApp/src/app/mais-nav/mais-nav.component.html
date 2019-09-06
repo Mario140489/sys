@@ -10,8 +10,8 @@
     <mat-icon *ngIf="submodules.id_SubModulos != index" class="alinhamento">expand_more</mat-icon>
     <mat-icon *ngIf="submodules.id_SubModulos === index" class="alinhamento">expand_less</mat-icon></a>
     <div *ngIf="submodules.id_SubModulos === index" >
-    <mat-list *ngFor = "let form of form" >
-      <mat-list-item>{{form.nome}}</mat-list-item>
+    <mat-list class="exemplo-right-align" *ngFor = "let submodules of submodules.formularios" >
+      <mat-list-item style="font-size: 14px">{{submodules.nome}} <mat-icon class="alinhamento" >arrow_right</mat-icon> </mat-list-item>
       <mat-divider></mat-divider>
 
     </mat-list>

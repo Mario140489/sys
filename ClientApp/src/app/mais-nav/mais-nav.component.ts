@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import {Router } from '@angular/router';
 import {LoginService} from  '../service/login.service';
 import { MatPaginator, MatSort, MatTableDataSource, MatSnackBar, MatSnackBarConfig } from '@angular/material';
+import { async } from '@angular/core/testing';
 
 @Component({
   selector: 'mais-nav',
@@ -35,28 +36,29 @@ export class MaisNavComponent {
   ngOnInit() {
    this.router.navigate(['Login']);
   }
-  CarregaModules(id){
-          this.service.SubModulos(id).subscribe(result =>{
+ async CarregaModules(id){
+          this.service.SubModulos(id).subscribe(async result =>{
             this.submodules = result;
             if (this.submodules.length > 0){
-              for(var i =0 ; i < this.submodules.length; i++)
-              {
-                this.service.pegarformularios(this.submodules[i].id_SubModulos).subscribe(
-                  resultado =>{
-                  this.form.push(resultado);
-                  this.navlateral = true;
-                  this.btnhidden = false;
-                  }
-                )
-              }
-          
+              this.form = this.submodules;
+              await this.pegarform();
+              this.btnhidden = false;
+              this.navlateral = true;
             }
             else{
               let msg:string = "Nenhum Modulo ativo para seu Usuario";
               this.erros(msg);
             }
           }, error =>{this.erros(error)});
-          
+  }
+ async pegarform(){
+   debugger;
+     for(var i =0 ; i < this.submodules.length; i++)
+    {
+     this.submodules[i].formularios =  await  this.service.pegarformularios(this.submodules[i].id_SubModulos).toPromise();
+     this.submodules[i] ;
+    }
+
   }
   mostrarform(id){
     if(this.index === id)
