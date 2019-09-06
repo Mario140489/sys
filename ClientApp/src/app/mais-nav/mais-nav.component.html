@@ -4,14 +4,15 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]= navlateral>
-      <mat-toolbar color="accent">Menu</mat-toolbar>
+      <mat-toolbar color="accent"><mat-icon>{{icon}}</mat-icon>{{menu}}</mat-toolbar>
     <mat-nav-list color="accent"  class="exemplo-right-align" *ngFor = "let submodules of submodules">
-    <a style="text-align: right" (click)="mostrarform(submodules.id_SubModulos)" mat-list-item ><mat-icon mat-list-item style="font-size:20px">{{submodules.icon}} </mat-icon> {{submodules.nome}}
+    <a style="text-align: right" (click)="mostrarsubmodulos(submodules.id_SubModulos)" mat-list-item ><mat-icon mat-list-item style="font-size:20px">{{submodules.icon}} </mat-icon> {{submodules.nome}}
     <mat-icon *ngIf="submodules.id_SubModulos != index" class="alinhamento">expand_more</mat-icon>
     <mat-icon *ngIf="submodules.id_SubModulos === index" class="alinhamento">expand_less</mat-icon></a>
     <div *ngIf="submodules.id_SubModulos === index" >
     <mat-list class="exemplo-right-align" *ngFor = "let submodules of submodules.formularios" >
-      <mat-list-item style="font-size: 14px">{{submodules.nome}} <mat-icon class="alinhamento" >arrow_right</mat-icon> </mat-list-item>
+      <mat-list-item [ngClass]="{'ativo':submodules.idFormularios === form}"  (click)="mostrarformativo(submodules.idFormularios,submodules.link)" style="font-size: 14px">
+        {{submodules.nome}} <mat-icon class="alinhamento" >arrow_right</mat-icon> </mat-list-item>
       <mat-divider></mat-divider>
 
     </mat-list>
@@ -41,7 +42,7 @@
            <ul  id="dropdown-basic" style="font-size:12px"  *dropdownMenu class="dropdown-menu  dropdown-menu-right "
       role="menu" aria-labelledby="button-basic" >
 <mat-action-list dense *ngFor = "let modules of modules " >
-  <button (click)="CarregaModules(modules.id_Modulos)" mat-list-item style="font-size:14px"><mat-icon mat-list-item style="font-size:20px">{{modules.icon}}</mat-icon> {{modules.nome}}</button>
+  <button (click)="CarregaModules(modules.id_Modulos, modules.nome,modules.icon)" mat-list-item style="font-size:14px"><mat-icon mat-list-item style="font-size:20px">{{modules.icon}}</mat-icon> {{modules.nome}}</button>
 </mat-action-list>
   </ul>
            </div>

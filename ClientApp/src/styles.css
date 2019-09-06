@@ -5,10 +5,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .salvocomsucesso {
   background-color:green;
   color: white;
+  opacity: 0.6;
 }
 .error{
   background-color:red;
   color:white;
+  opacity: 0.6;
 }
 .exemplo-right-align {
   padding-top: 0px !important;
@@ -20,8 +22,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     font-weight: bold;
   }
   button:focus {
-    outline: 0px dotted;
-    outline: 0px auto -webkit-focus-ring-color;
+    outline: 0px dotted !important;
+    outline: 0px auto -webkit-focus-ring-color !important;
+  }
+  btn-sucess{
+    outline: 0px dotted !important;
+    outline: 0px auto -webkit-focus-ring-color !important;
   }
   .right{
     text-align: right;
@@ -52,4 +58,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .example-spacer {
   flex: 1 1 auto;
+}
+.ativo{
+ background-color: #eceff1;
 }

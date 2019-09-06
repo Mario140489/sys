@@ -33,7 +33,9 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import br from '@angular/common/locales/br';
 import {NgxMaskModule} from 'ngx-mask-2';
 import { LoginComponent } from './login/login.component';
-import {LoginService} from './service/login.service'
+import {LoginService} from './service/login.service';
+import { ListarUsuarioComponent } from './listar-usuario/listar-usuario.component';
+import { UsuarioService } from './service/usuario.service'
 registerLocaleData(br, 'pt-BR');
 //import $ from "JQuery";
 @NgModule({
@@ -44,6 +46,7 @@ registerLocaleData(br, 'pt-BR');
     FetchDataComponent,
     MaisNavComponent,
     LoginComponent,
+    ListarUsuarioComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -52,7 +55,7 @@ registerLocaleData(br, 'pt-BR');
     
     RouterModule.forRoot([
       { path: '', component: LoginComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
+      { path: 'ListarUsuario', component: ListarUsuarioComponent },
       { path: 'home', component: HomeComponent},
       { path: 'Login', component: LoginComponent}
     ]),
@@ -86,8 +89,9 @@ registerLocaleData(br, 'pt-BR');
     MatTooltipModule,
     MatRadioModule,
     MaterialFileInputModule,
+    MatPaginatorModule,
   ],
-  providers: [MatDatepickerModule,AppComponent,LoginService,
+  providers: [MatDatepickerModule,AppComponent,LoginService,UsuarioService,
     { provide: LOCALE_ID, useValue: "pt-br" }
   ],
   bootstrap: [AppComponent]

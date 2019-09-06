@@ -7,6 +7,7 @@ import {LoginService} from  '../service/login.service';
 import { MatPaginator, MatSort, MatTableDataSource, MatSnackBar, MatSnackBarConfig } from '@angular/material';
 import { async } from '@angular/core/testing';
 
+
 @Component({
   selector: 'mais-nav',
   templateUrl: './mais-nav.component.html',
@@ -20,7 +21,9 @@ export class MaisNavComponent {
   modules = null;
   submodules = null;
   index =0;
-  form = [];
+  form = 0;
+  menu ="";
+  icon ="";
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches)
@@ -36,20 +39,31 @@ export class MaisNavComponent {
   ngOnInit() {
    this.router.navigate(['Login']);
   }
- async CarregaModules(id){
+ async CarregaModules(id,nome,icon){
           this.service.SubModulos(id).subscribe(async result =>{
             this.submodules = result;
             if (this.submodules.length > 0){
               this.form = this.submodules;
               await this.pegarform();
+              this.icon=icon;
+              this.menu = nome;
               this.btnhidden = false;
               this.navlateral = true;
             }
             else{
+              this.icon="";
+              this.menu = "";
+              this.btnhidden = true;
+              this.navlateral = false;
               let msg:string = "Nenhum Modulo ativo para seu Usuario";
               this.erros(msg);
             }
-          }, error =>{this.erros(error)});
+          }, error =>{
+            this.icon="";
+              this.menu = "";
+              this.btnhidden = true;
+              this.navlateral = false;
+            this.erros(error)});
   }
  async pegarform(){
    debugger;
@@ -60,7 +74,7 @@ export class MaisNavComponent {
     }
 
   }
-  mostrarform(id){
+  mostrarsubmodulos(id){
     if(this.index === id)
     {
       this.index =0
@@ -68,5 +82,11 @@ export class MaisNavComponent {
     else{
    this.index = id;
     }
+
+  }
+  mostrarformativo(id,link){
+    debugger;
+   this.form = id;
+   this.router.navigate([link]);
   }
 }
