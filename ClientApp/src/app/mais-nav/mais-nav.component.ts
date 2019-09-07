@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, finalize } from 'rxjs/operators';
 import {Router } from '@angular/router';
 import {LoginService} from  '../service/login.service';
 import { MatPaginator, MatSort, MatTableDataSource, MatSnackBar, MatSnackBarConfig } from '@angular/material';
+import { exists } from 'fs';
+import { async } from 'q';
 
 @Component({
   selector: 'mais-nav',
@@ -18,8 +20,9 @@ export class MaisNavComponent {
   boleano = true;
   modules = null;
   submodules = null;
+  itens= [];
   index =0;
-  form = [];
+  form =null;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches)
@@ -35,28 +38,41 @@ export class MaisNavComponent {
   ngOnInit() {
    this.router.navigate(['Login']);
   }
-  CarregaModules(id){
+ async CarregaModules(id){
           this.service.SubModulos(id).subscribe(result =>{
             this.submodules = result;
+            this.form = this.submodules;
             if (this.submodules.length > 0){
-              for(var i =0 ; i < this.submodules.length; i++)
-              {
-                this.service.pegarformularios(this.submodules[i].id_SubModulos).subscribe(
-                  resultado =>{
-                  this.form.push(resultado);
-                  this.navlateral = true;
-                  this.btnhidden = false;
-                  }
-                )
+              for(var i =0 ; i < this.submodules.length ;i++ ){
+                let id = this.submodules[i].id_SubModulos;
+                if(id > 0){
+                var teste =  this.mergeitens(id)
+                }
               }
-          
             }
             else{
               let msg:string = "Nenhum Modulo ativo para seu Usuario";
               this.erros(msg);
             }
-          }, error =>{this.erros(error)});
+          }, error =>{this.erros(error)}
+          );
           
+          
+  }
+     async  mergeitens(id){
+      this.service.pegarformularios(id).subscribe(
+      result =>{
+        if(result == [])
+        {
+        }
+        else{
+        this.form = result;
+        this.navlateral = true;
+        this.btnhidden = false;
+        }
+      }
+    );
+  
   }
   mostrarform(id){
     if(this.index === id)

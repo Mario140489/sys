@@ -1,6 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { async } from 'rxjs/internal/scheduler/async';
 
 @Injectable({
   providedIn: 'root'
@@ -21,9 +22,9 @@ export class LoginService {
      return this.http.get(this.rootURL + 'api/Modulos/' + id);
    }
    SubModulos(id){
-     return this.http.get(this.rootURL + 'api/SubModulos/' + id)
+     return this.http.get(this.rootURL + 'api/SubModulos/' + id);
    }
-   pegarformularios(id){
-     return this.http.get(this.rootURL + 'api/Formularios/' +id )
+     pegarformularios(id){
+     return  this.http.get(this.rootURL + 'api/Formularios/' +id );
    }
 }
