@@ -1,0 +1,40 @@
+<div><button mat-raised-button class="btn-success">Primary</button></div>
+<p></p>
+<div class="">
+    <mat-card>
+            <mat-card-title color="accent">Usuarios</mat-card-title>
+            <div class="row">
+                    <div class="col-sm-12">
+                      <div row>
+                        <mat-form-field class="row col-sm-4">
+                          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Pesquisar">
+                          <mat-icon matSuffix>search</mat-icon>
+                        </mat-form-field>
+                      </div>
+                      <table i18n mat-table [dataSource]="listData" style="width:100%" class="table-sm table-striped table-hover">
+                              <!--- Note that these columns can be defined in any order.
+                          The actual rendered columns are set as a property on the row definition" -->
+                              <!-- Position Column -->
+                              <ng-container matColumnDef="idUsuario">
+                                <th class="" mat-header-cell *matHeaderCellDef> ID </th>
+                                <td mat-cell *matCellDef="let element"> {{element.idUsuario}} </td>
+                              </ng-container>
+                      
+                              <!-- Name Column -->
+                              <ng-container matColumnDef="nome">
+                                <th mat-header-cell *matHeaderCellDef> Nome </th>
+                                <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+                              </ng-container>
+                              <ng-container matColumnDef="Operaçao">
+                                <th mat-header-cell *matHeaderCellDef>  </th>
+                                <td style="text-align: right;" mat-cell *matCellDef="let element"> <button class="btn btn-sm btn-danger" ><span class="fas fa-trash"></span></button> </td>
+                              </ng-container>
+                              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                            </table>
+                      <mat-paginator [pageSizeOptions]="[5,10, 20]" showFirstLastButtons></mat-paginator>
+                    </div>
+                
+                  </div>
+    </mat-card>
+</div>

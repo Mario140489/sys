@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
-import { map, finalize } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import {Router } from '@angular/router';
 import {LoginService} from  '../service/login.service';
 import { MatPaginator, MatSort, MatTableDataSource, MatSnackBar, MatSnackBarConfig } from '@angular/material';
-import { exists } from 'fs';
-import { async } from 'q';
+import { async } from '@angular/core/testing';
+
 
 @Component({
   selector: 'mais-nav',
@@ -20,9 +20,10 @@ export class MaisNavComponent {
   boleano = true;
   modules = null;
   submodules = null;
-  itens= [];
   index =0;
-  form =null;
+  form = 0;
+  menu ="";
+  icon ="";
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches)
@@ -38,43 +39,42 @@ export class MaisNavComponent {
   ngOnInit() {
    this.router.navigate(['Login']);
   }
- async CarregaModules(id){
-          this.service.SubModulos(id).subscribe(result =>{
+ async CarregaModules(id,nome,icon){
+          this.service.SubModulos(id).subscribe(async result =>{
             this.submodules = result;
-            this.form = this.submodules;
             if (this.submodules.length > 0){
-              for(var i =0 ; i < this.submodules.length ;i++ ){
-                let id = this.submodules[i].id_SubModulos;
-                if(id > 0){
-                var teste =  this.mergeitens(id)
-                }
-              }
+              this.form = this.submodules;
+              await this.pegarform();
+              this.icon=icon;
+              this.menu = nome;
+              this.btnhidden = false;
+              this.navlateral = true;
             }
             else{
+              this.icon="";
+              this.menu = "";
+              this.btnhidden = true;
+              this.navlateral = false;
               let msg:string = "Nenhum Modulo ativo para seu Usuario";
               this.erros(msg);
             }
-          }, error =>{this.erros(error)}
-          );
-          
-          
+          }, error =>{
+            this.icon="";
+              this.menu = "";
+              this.btnhidden = true;
+              this.navlateral = false;
+            this.erros(error)});
   }
-     async  mergeitens(id){
-      this.service.pegarformularios(id).subscribe(
-      result =>{
-        if(result == [])
-        {
-        }
-        else{
-        this.form = result;
-        this.navlateral = true;
-        this.btnhidden = false;
-        }
-      }
-    );
-  
+ async pegarform(){
+   debugger;
+     for(var i =0 ; i < this.submodules.length; i++)
+    {
+     this.submodules[i].formularios =  await  this.service.pegarformularios(this.submodules[i].id_SubModulos).toPromise();
+     this.submodules[i] ;
+    }
+
   }
-  mostrarform(id){
+  mostrarsubmodulos(id){
     if(this.index === id)
     {
       this.index =0
@@ -82,5 +82,11 @@ export class MaisNavComponent {
     else{
    this.index = id;
     }
+
+  }
+  mostrarformativo(id,link){
+    debugger;
+   this.form = id;
+   this.router.navigate([link]);
   }
 }
