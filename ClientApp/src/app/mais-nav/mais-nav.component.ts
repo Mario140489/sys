@@ -19,11 +19,13 @@ export class MaisNavComponent {
   btnhidden = true;
   boleano = true;
   modules = null;
+  nomemodulo ="";
   submodules = null;
   index =0;
   form = 0;
   menu ="";
   icon ="";
+  formnome =""
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches)
@@ -74,19 +76,21 @@ export class MaisNavComponent {
     }
 
   }
-  mostrarsubmodulos(id){
+  mostrarsubmodulos(id,nome){
     if(this.index === id)
     {
       this.index =0
     }
     else{
    this.index = id;
+   this.nomemodulo = nome;
     }
 
   }
-  mostrarformativo(id,link){
+  mostrarformativo(id,link,nome){
     debugger;
    this.form = id;
+   this.formnome=nome;
    this.router.navigate([link]);
   }
 }

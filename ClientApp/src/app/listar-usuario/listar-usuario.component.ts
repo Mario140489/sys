@@ -2,10 +2,8 @@
 import { Injectable ,Component, OnInit,ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import {UsuarioService} from '../service/usuario.service';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { PageEvent } from '@angular/material';
+import {MaisNavComponent} from '../mais-nav/mais-nav.component';
 @Injectable()
 @Component({
   selector: 'app-listar-usuario',
@@ -13,6 +11,10 @@ import { PageEvent } from '@angular/material';
   styleUrls: ['./listar-usuario.component.css']
 })
 export class ListarUsuarioComponent implements OnInit {
+  menu ="";
+  nomemodulo ="";
+  form ="";
+  buscar = "Buscar";
   public lista;
   listData: MatTableDataSource<any>;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -20,10 +22,13 @@ export class ListarUsuarioComponent implements OnInit {
   // MatPaginator Output
   pageEvent: PageEvent;
   displayedColumns: string[] = ['idUsuario', 'nome','Operaçao'];
-  constructor(private service:UsuarioService) { }
+  constructor(private service:UsuarioService, private maisnav:MaisNavComponent) { }
 
   ngOnInit() {
     this.CarregarUsuario();
+    this.menu = this.maisnav.menu;
+    this.nomemodulo = this.maisnav.nomemodulo;
+    this.form = this.maisnav.formnome;
   }
   CarregarUsuario(){
   this.service.listarUsuario().subscribe(result =>{

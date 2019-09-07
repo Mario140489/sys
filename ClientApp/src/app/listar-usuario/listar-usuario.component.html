@@ -1,8 +1,17 @@
-<div><button mat-raised-button class="btn-success">Primary</button></div>
+<nav class="font-tema" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a >{{menu}}</a></li>
+    <li class="breadcrumb-item"><a >{{nomemodulo}}</a></li>
+    <li class="breadcrumb-item"><a >{{form}}</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{buscar}}</li>
+  </ol>
+</nav>
+<div class="rightmg"><button mat-raised-button class="btn-success"><mat-icon style="font-size: 20px">add</mat-icon>Novo</button></div>
 <p></p>
 <div class="">
     <mat-card>
-            <mat-card-title color="accent">Usuarios</mat-card-title>
+            <mat-card-title class="font-tema">Lista {{form}}</mat-card-title>
+            <mat-divider></mat-divider>
             <div class="row">
                     <div class="col-sm-12">
                       <div row>
@@ -11,6 +20,7 @@
                           <mat-icon matSuffix>search</mat-icon>
                         </mat-form-field>
                       </div>
+                      <hr>
                       <table i18n mat-table [dataSource]="listData" style="width:100%" class="table-sm table-striped table-hover">
                               <!--- Note that these columns can be defined in any order.
                           The actual rendered columns are set as a property on the row definition" -->
