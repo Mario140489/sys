@@ -1,0 +1,50 @@
+<nav class="font-tema" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a >{{menu}}</a></li>
+      <li class="breadcrumb-item"><a >{{nomemodulo}}</a></li>
+      <li class="breadcrumb-item"><a >{{form}}</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{buscar}}</li>
+    </ol>
+  </nav>
+  <div class="rightmg">
+    <button class="mg-btn" mat-raised-button [routerLink]='["/ListarUsuario"]' color="accent"><mat-icon style="font-size: 20px;margin-left: -7px;">reply</mat-icon>Voltar</button>
+    <button  mat-raised-button (click)="salvar()"color="primary"><mat-icon style="font-size: 20px;margin-left: -7px;">save</mat-icon>Salvar</button></div>
+  <p></p>
+  <mat-card class="temabar" >
+      <mat-card-header class="row">
+          <mat-card-title >{{nomemodulo}} {{form}}</mat-card-title>
+      </mat-card-header>
+      <div class="temacontent">
+          <div class="col-sm-12" >
+                  <div>
+                    <div row>
+                      <form [formGroup]="formulario">
+                      <mat-form-field class=" primeiralinha col-sm-4" >
+                        <input required maxlength="150" matInput placeholder="Nome" formControlName="Nome">
+                      </mat-form-field>
+                      <mat-form-field class=" primeiralinha col-sm-4">
+                          <input required maxlength="50" matInput placeholder="Login" formControlName="Login">
+                      </mat-form-field>
+                      <mat-form-field class=" primeiralinha col-sm-4">
+                          <mat-select placeholder="Grupo" *ngFor ="let GrupoUsuario of GrupoUsuario" >
+                            <mat-option  value="option" >Option</mat-option>
+                            <input hidden required maxlength="50" matInput placeholder="Grupo" formControlName="Grupo">
+                          </mat-select>
+                      </mat-form-field>
+                      <mat-form-field class="col-sm-4">
+                          <input required type="password" maxlength="20" matInput placeholder="Senha" formControlName="Senha">
+                      </mat-form-field>
+                      <mat-form-field class="col-sm-4">
+                          <input required type="password" maxlength="20" matInput placeholder="Confirmar Senha" >
+                      </mat-form-field>
+                      <div>
+                      <mat-checkbox class="col-sm-12">Inativo</mat-checkbox>
+                    </div>
+                    <br>
+                    </form>
+                    </div>
+                  </div>
+              
+                </div>
+              </div>
+  </mat-card>

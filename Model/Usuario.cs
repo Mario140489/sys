@@ -16,6 +16,7 @@ namespace WebApplication4.Model
         public string Senha { get; set; }
         public DateTime DtUpdate { get; set; }
         public DateTime DtCadastro { get; set; }
+        public bool Inativo { get; set; }
         [ForeignKey("GrupoUsuario")]
         public int Id_GrupoUsuario { get; set; }
         public virtual GrupoUsuario GrupoUsuario { get; set; }

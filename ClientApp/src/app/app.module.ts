@@ -35,7 +35,8 @@ import {NgxMaskModule} from 'ngx-mask-2';
 import { LoginComponent } from './login/login.component';
 import {LoginService} from './service/login.service';
 import { ListarUsuarioComponent } from './listar-usuario/listar-usuario.component';
-import { UsuarioService } from './service/usuario.service'
+import { UsuarioService } from './service/usuario.service';
+import { UsuarioComponent } from './usuario/usuario.component'
 registerLocaleData(br, 'pt-BR');
 //import $ from "JQuery";
 @NgModule({
@@ -47,17 +48,18 @@ registerLocaleData(br, 'pt-BR');
     MaisNavComponent,
     LoginComponent,
     ListarUsuarioComponent,
+    UsuarioComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
-    
     RouterModule.forRoot([
       { path: '', component: LoginComponent, pathMatch: 'full' },
       { path: 'ListarUsuario', component: ListarUsuarioComponent },
       { path: 'home', component: HomeComponent},
-      { path: 'Login', component: LoginComponent}
+      { path: 'Login', component: LoginComponent},
+      { path: 'Usuario', component: UsuarioComponent}
     ]),
     NgxMaskModule.forRoot(),
     TooltipModule.forRoot(),
@@ -91,7 +93,7 @@ registerLocaleData(br, 'pt-BR');
     MaterialFileInputModule,
     MatPaginatorModule,
   ],
-  providers: [MatDatepickerModule,AppComponent,LoginService,UsuarioService,
+  providers: [MatDatepickerModule,AppComponent,LoginService,UsuarioService,MaisNavComponent,
     { provide: LOCALE_ID, useValue: "pt-br" }
   ],
   bootstrap: [AppComponent]

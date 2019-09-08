@@ -4,6 +4,8 @@ import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import {UsuarioService} from '../service/usuario.service';
 import { PageEvent } from '@angular/material';
 import {MaisNavComponent} from '../mais-nav/mais-nav.component';
+import {UsuarioComponent} from '../usuario/usuario.component'
+import {Router } from '@angular/router';
 @Injectable()
 @Component({
   selector: 'app-listar-usuario',
@@ -21,8 +23,9 @@ export class ListarUsuarioComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   // MatPaginator Output
   pageEvent: PageEvent;
-  displayedColumns: string[] = ['idUsuario', 'nome','Operaçao'];
-  constructor(private service:UsuarioService, private maisnav:MaisNavComponent) { }
+  displayedColumns: string[] = ['idUsuario', 'nome','inativo','Operaçao'];
+  constructor(private service:UsuarioService, private maisnav:MaisNavComponent,
+    private router:Router) { }
 
   ngOnInit() {
     this.CarregarUsuario();
@@ -31,7 +34,7 @@ export class ListarUsuarioComponent implements OnInit {
     this.form = this.maisnav.formnome;
   }
   CarregarUsuario(){
-  this.service.listarUsuario().subscribe(result =>{
+    this.service.listarUsuario().subscribe(result =>{
     this.lista =result;
     this.listData = new MatTableDataSource(this.lista);
     this.listData.paginator = this.paginator;
@@ -39,5 +42,9 @@ export class ListarUsuarioComponent implements OnInit {
   }
   applyFilter(filterValue: string) {
     this.listData.filter = filterValue.trim().toLowerCase();
+  }
+  new(){
+    this.maisnav.buscar = "Novo";
+    this.router.navigate(['Usuario']);
   }
 }

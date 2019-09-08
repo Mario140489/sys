@@ -25,7 +25,8 @@ export class MaisNavComponent {
   form = 0;
   menu ="";
   icon ="";
-  formnome =""
+  formnome ="";
+  buscar ="";
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches)
@@ -68,7 +69,6 @@ export class MaisNavComponent {
             this.erros(error)});
   }
  async pegarform(){
-   debugger;
      for(var i =0 ; i < this.submodules.length; i++)
     {
      this.submodules[i].formularios =  await  this.service.pegarformularios(this.submodules[i].id_SubModulos).toPromise();
@@ -88,7 +88,6 @@ export class MaisNavComponent {
 
   }
   mostrarformativo(id,link,nome){
-    debugger;
    this.form = id;
    this.formnome=nome;
    this.router.navigate([link]);
