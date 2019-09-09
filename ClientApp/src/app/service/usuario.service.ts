@@ -14,6 +14,6 @@ export class UsuarioService {
      return this.http.get(this.rootURL +'/api/Usuarios').pipe(map(response => response))
    }
    ListarGrupo(){
-     return this.http.get(this.rootURL +'/api/GrupoUsuario')
+     return this.http.get(this.rootURL +'/api/GrupoUsuarios').pipe();
    }
 }
