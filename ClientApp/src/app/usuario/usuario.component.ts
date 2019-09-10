@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm, FormGroup, FormBuilder,Validator, Validators, FormControl} from '@angular/forms';
+import { NgForm, FormGroup, FormBuilder,Validator, Validators, FormControl, AbstractControl} from '@angular/forms';
 import {MaisNavComponent} from '../mais-nav/mais-nav.component';
 import {UsuarioService} from '../service/usuario.service';
 @Component({
@@ -33,12 +33,17 @@ export class UsuarioComponent implements OnInit {
       Grupo:[""],
       ConfSenha:[""],
       Inativo:[false]
+    },{
+      validator:this.verifsenha
     })
   }
   async carregargrupo(){
     this.GrupoUsuario = await this.usario.ListarGrupo().toPromise();
   }
-  verifsenha(){
-   return (this.formulario.get('ConfSenha').value ? this.formulario.get('Senha').value : {required:true})
+  verifsenha(form: FormGroup){
+    debugger;
+ const  validacao = this.formulario.get('ConfSenha').value !== this.formulario.get('Senha').value;
+ return validacao ? {ConfSenha:true} : null
+
   }
 }

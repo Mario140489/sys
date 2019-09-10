@@ -35,7 +35,7 @@
                           <input required type="password" maxlength="20" matInput placeholder="Senha"  formControlName="Senha"> 
                       </mat-form-field>
                       <mat-form-field class="col-sm-4">
-                          <input required type="password"  maxlength="20" matInput placeholder="Confirmar Senha"  formControlName="ConfSenha">
+                          <input required type="password" (blur)="verifsenha()"  maxlength="20" matInput placeholder="Confirmar Senha"  formControlName="ConfSenha">
                           <mat-error>
                             Confirmação de senha tem que ser o mesmo que a senha.
                           </mat-error>
