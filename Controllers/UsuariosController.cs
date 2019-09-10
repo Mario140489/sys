@@ -95,7 +95,7 @@ namespace WebApplication4.Controllers
         }
 
         // POST: api/Usuarios
-        [HttpPost]
+        [HttpPost("adicionar")]
         public async Task<IActionResult> PostUsuario([FromBody] Usuario usuario)
         {
             if (!ModelState.IsValid)
