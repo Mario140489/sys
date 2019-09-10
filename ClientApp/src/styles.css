@@ -92,3 +92,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mg-btn{
   margin-right: 5px !important;
 }
+.btn-card{
+  margin-left: 95% !important;
+  margin-right: 5% !important;
+  margin-top: -50px !important;
+}
