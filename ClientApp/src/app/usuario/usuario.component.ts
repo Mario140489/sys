@@ -64,7 +64,7 @@ export class UsuarioComponent implements OnInit {
   initForm() {
     this.formulario = this.formBuider.group({
       username: '',
-      password: '',
+      password: ['',Validators.minLength(6)],
       verifyPassword: ''
     }, {
       validator: this.passwordValidator
@@ -76,7 +76,7 @@ export class UsuarioComponent implements OnInit {
     return condition ? { passwordsDoNotMatch: true} : null;
   }
   Adicionar(){
-    debugger;
+      this.maisnav.boleano = false;
     if(this.formulario.valid){
       if(this.formulario.get('IdUsuario').value > 0){
 
@@ -87,7 +87,8 @@ export class UsuarioComponent implements OnInit {
         let msg ="Salvo com sucesso.";
         this.sucesso(msg);
         this.formulario.reset();
-      }, error =>{this.erros(JSON.stringify(error));})
+        this.maisnav.boleano = true;
+      }, error =>{this.erros(JSON.stringify(error)); this.maisnav.boleano = true})
     }
     }
   }
