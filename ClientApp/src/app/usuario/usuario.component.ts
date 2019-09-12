@@ -63,9 +63,9 @@ export class UsuarioComponent implements OnInit {
   }
   initForm() {
     this.formulario = this.formBuider.group({
-      username: '',
-      password: '',
-      verifyPassword: ''
+      username: null,
+      password: null,
+      verifyPassword: null
     }, {
       validator: this.passwordValidator
     })
@@ -86,7 +86,7 @@ export class UsuarioComponent implements OnInit {
       .subscribe(result =>{
         let msg ="Salvo com sucesso.";
         this.sucesso(msg);
-        this.formulario.reset();
+        this.confiform();
       }, error =>{this.erros(JSON.stringify(error));})
     }
     }
