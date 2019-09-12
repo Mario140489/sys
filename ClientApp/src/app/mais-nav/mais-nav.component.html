@@ -41,8 +41,12 @@
            <div class="">
            <ul  id="dropdown-basic" style="font-size:12px"  *dropdownMenu class="dropdown-menu  dropdown-menu-right "
       role="menu" aria-labelledby="button-basic" >
-<mat-action-list dense *ngFor = "let modules of modules " >
-  <button (click)="CarregaModules(modules.id_Modulos, modules.nome,modules.icon)" mat-list-item style="font-size:14px"><mat-icon mat-list-item style="font-size:20px">{{modules.icon}}</mat-icon> {{modules.nome}}</button>
+<mat-action-list dense  >
+  <button *ngFor = "let modules of modules " (click)="CarregaModules(modules.id_Modulos, modules.nome,modules.icon)" mat-list-item style="font-size:14px"><mat-icon mat-list-item style="font-size:20px">{{modules.icon}}</mat-icon> {{modules.nome}}</button>
+</mat-action-list>
+<mat-divider></mat-divider>
+<mat-action-list dense *ngIf = "user !== ''" >
+  <a href="" mat-list-item style="font-size:14px"><mat-icon mat-list-item style="font-size:20px">exit_to_app</mat-icon>Sair</a>
 </mat-action-list>
   </ul>
            </div>
