@@ -24,7 +24,6 @@ export class UsuarioService {
      return this.http.get(this.rootURL +'api/GrupoUsuarios').pipe();
    }
    Adicionar(data){
-     debugger;
      this.Usuario.Nome = data.Nome;
      this.Usuario.Login = data.Login;
      this.Usuario.Senha = data.Senha;
@@ -33,4 +32,11 @@ export class UsuarioService {
      data = this.Usuario;
      return this.http.post(this.rootURL +'api/Usuarios/adicionar',data);
    }
+   delete(id){
+    return this.http.delete(this.rootURL +'api/Usuarios/'+ id)
+   }
+   update(data){
+      return this.http.put(this.rootURL + 'api/Usuarios',data)
+    }
+
 }

@@ -3,6 +3,7 @@ import { NgForm, FormGroup, FormBuilder,Validator, Validators, FormControl, Form
 import {MaisNavComponent} from '../mais-nav/mais-nav.component';
 import {UsuarioService} from '../service/usuario.service';
 import { ErrorStateMatcher, MatSnackBar } from '@angular/material';
+import {Router } from '@angular/router';
 class CrossFieldErrorMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     return control.dirty && form.invalid;
@@ -23,7 +24,8 @@ export class UsuarioComponent implements OnInit {
   GrupoUsuario =null;
   formulario:FormGroup;
   senha ="";
-  constructor(private formBuider:FormBuilder,private maisnav:MaisNavComponent, private snackbar:MatSnackBar,private usario:UsuarioService) { 
+  constructor(private formBuider:FormBuilder,private router:Router,
+    private maisnav:MaisNavComponent, private snackbar:MatSnackBar,private usario:UsuarioService) { 
     this.confiform();
     //this.initForm();
   }
@@ -76,21 +78,36 @@ export class UsuarioComponent implements OnInit {
     return condition ? { passwordsDoNotMatch: true} : null;
   }
   Adicionar(){
+    debugger;
       this.maisnav.boleano = false;
     if(this.formulario.valid){
       if(this.formulario.get('IdUsuario').value > 0){
-
+        this.usario.update(this.formulario.value)
+        .subscribe(result =>{
+          let msg ="Salvo com sucesso;";
+          this.sucesso(msg);
+          this.formulario.reset();
+          this.maisnav.boleano = true;
+        }, error =>{this.erros(JSON.stringify(error)); this.maisnav.boleano = true})
       }
     else{
       this.usario.Adicionar(this.formulario.value)
       .subscribe(result =>{
         let msg ="Salvo com sucesso.";
         this.sucesso(msg);
-        this.formulario.reset();
         this.maisnav.boleano = true;
+        this.router.navigate(['ListarUsuario']);
       }, error =>{this.erros(JSON.stringify(error)); this.maisnav.boleano = true})
     }
     }
+  }
+  remove(id){
+    this.usario.delete(id)
+    .subscribe(result =>{
+      let msg = "Deletado com sucesso.";
+      this.sucesso(msg);
+      this.maisnav.boleano = true;
+    }, error =>{this.erros(JSON.stringify(error))})
   }
  /* passwordValidator(form: FormGroup) {
     const condition = form.get('Senha').value !== form.get('verifyPassword').value;
