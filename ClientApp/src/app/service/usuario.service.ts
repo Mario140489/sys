@@ -12,7 +12,7 @@ export class UsuarioService {
     "Login":"",
     "Senha":"",
     "Id_GrupoUsuario":"",
-    "Inativo":1
+    "Inativo":false
   }
   constructor(private http:HttpClient, @Inject('BASE_URL')baseUrl:string) {
     this.rootURL= baseUrl;
@@ -30,7 +30,6 @@ export class UsuarioService {
      this.Usuario.Senha = data.Senha;
      this.Usuario.Id_GrupoUsuario = data.Grupo;
      this.Usuario.Inativo = data.Inativo;
-     //if(data.Inativo == true) {this.Usuario.Inativo = 1} else{this.Usuario.Inativo = 0}
      data = this.Usuario;
      return this.http.post(this.rootURL +'api/Usuarios/adicionar',data);
    }

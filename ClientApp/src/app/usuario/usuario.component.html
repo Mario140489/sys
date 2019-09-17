@@ -1,4 +1,4 @@
-<form (ngSubmit)="Adicionar()" [formGroup]="formulario">
+<form (ngSubmit)="Adicionar()" [formGroup]="formulario" autocomplete="off">
 <nav class="font-tema" aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a >{{menu}}</a></li>
@@ -33,7 +33,10 @@
                           <input required maxlength="50" matInput placeholder="Login" formControlName="Login">
                       </mat-form-field>
                       <mat-form-field class="col-sm-4">
-                          <input required type="password" maxlength="20" matInput placeholder="Senha"  formControlName="Senha"> 
+                          <input required minlength="6" type="password" maxlength="20" matInput placeholder="Senha"  formControlName="Senha"> 
+                          <mat-error *ngIf="formulario.get('Senha').hasError('minlength') && !formulario.get('Senha').hasError('required')">
+                            Senha tem que ter pelo menos 6 caracteres
+                          </mat-error>
                       </mat-form-field>
                       <mat-form-field class="col-sm-4">
                         <input type="password" matInput placeholder="Verify Password" formControlName='verifyPassword' [errorStateMatcher]="errorMatcher">
