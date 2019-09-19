@@ -36,7 +36,8 @@ import { LoginComponent } from './login/login.component';
 import {LoginService} from './service/login.service';
 import { ListarUsuarioComponent } from './listar-usuario/listar-usuario.component';
 import { UsuarioService } from './service/usuario.service';
-import { UsuarioComponent } from './usuario/usuario.component'
+import { UsuarioComponent } from './usuario/usuario.component';
+import { ListaGrupoUsuarioComponent } from './lista-grupo-usuario/lista-grupo-usuario.component'
 registerLocaleData(br, 'pt-BR');
 //import $ from "JQuery";
 @NgModule({
@@ -49,6 +50,7 @@ registerLocaleData(br, 'pt-BR');
     LoginComponent,
     ListarUsuarioComponent,
     UsuarioComponent,
+    ListaGrupoUsuarioComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -59,7 +61,8 @@ registerLocaleData(br, 'pt-BR');
       { path: 'ListarUsuario', component: ListarUsuarioComponent },
       { path: 'home', component: HomeComponent},
       { path: 'Login', component: LoginComponent},
-      { path: 'Usuario', component: UsuarioComponent}
+      { path: 'Usuario', component: UsuarioComponent},
+      { path: 'ListarGrupoUsuario', component: ListaGrupoUsuarioComponent}
     ]),
     NgxMaskModule.forRoot(),
     TooltipModule.forRoot(),

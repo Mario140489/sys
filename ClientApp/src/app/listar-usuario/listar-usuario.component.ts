@@ -44,7 +44,7 @@ export class ListarUsuarioComponent implements OnInit {
     this.form = this.maisnav.formnome;
   }
  async CarregarUsuario(){
-    this.service.listarUsuario().subscribe(result =>{
+    this.service.listarUsuario().subscribe(async result =>{
     this.lista =result;
     this.listData = new MatTableDataSource(this.lista);
     this.listData.paginator = this.paginator;
