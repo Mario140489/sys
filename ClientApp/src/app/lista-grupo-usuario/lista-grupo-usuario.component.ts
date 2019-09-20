@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatSort, MatPaginator, PageEvent, MatSnackBar } from '@angular/material';
 import { MaisNavComponent } from '../mais-nav/mais-nav.component';
 import { Router } from '@angular/router';
+import {GrupoUsuarioService} from '../service/grupo-usuario.service'
 
 @Component({
   selector: 'app-lista-grupo-usuario',
@@ -20,8 +21,8 @@ export class ListaGrupoUsuarioComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   // MatPaginator Output
   pageEvent: PageEvent;
-  displayedColumns: string[] = ['idUsuario', 'nome','inativo','Operaçao'];
-  constructor(private maisnav:MaisNavComponent,
+  displayedColumns: string[] = ['idGrupoUsuario', 'ds_GrupoUsuario','Inativo','Operaçao'];
+  constructor(private maisnav:MaisNavComponent,private service:GrupoUsuarioService,
     private router:Router,private snackbar:MatSnackBar) { }
     sucesso(msg) {
       this.snackbar.open(msg, "", {
@@ -34,6 +35,18 @@ export class ListaGrupoUsuarioComponent implements OnInit {
         });
       }
   ngOnInit() {
+    this.CarregaGrupo();
+    this.menu = this.maisnav.menu;
+    this.nomemodulo = this.maisnav.nomemodulo;
+    this.form = this.maisnav.formnome;
+  }
+  CarregaGrupo(){
+    this.service.ListarGrupousuario().subscribe(result => {
+      this.lista = result;
+      this.listData =new MatTableDataSource(this.lista);
+      this.listData.paginator = this.paginator;
+    }
+      )
   }
 
 }

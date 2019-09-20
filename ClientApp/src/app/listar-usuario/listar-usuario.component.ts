@@ -54,8 +54,13 @@ export class ListarUsuarioComponent implements OnInit {
     this.listData.filter = filterValue.trim().toLowerCase();
   }
   new(){
+    this.service.IdUsuario = "";
     this.maisnav.buscar = "Novo";
     this.router.navigate(['Usuario']);
+  }
+  Alterar(id){
+    this.service.IdUsuario = id;
+    this.router.navigate(['Usuario'])
   }
   async delete(id) {
     debugger;

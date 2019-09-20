@@ -45,7 +45,7 @@
                         </mat-error>
                       </mat-form-field>
                       <div>
-                      <mat-checkbox class="col-sm-12">Inativo</mat-checkbox>
+                      <mat-checkbox class="col-sm-12" formControlName="Inativo">Inativo</mat-checkbox>
                     </div>
                     <br>
                     </div>
@@ -64,7 +64,7 @@
               <div>
                 <div row>
                   <mat-form-field class=" primeiralinha col-sm-4">
-                      <mat-select placeholder="Grupo" formControlName="Grupo"  >
+                      <mat-select placeholder="Grupo" formControlName="id_GrupoUsuario"  >
                         <mat-option  *ngFor ="let GrupoUsuario of GrupoUsuario " [value]="GrupoUsuario.idGrupoUsuario" >{{GrupoUsuario.ds_GrupoUsuario}}</mat-option>
                         <input hidden required maxlength="50" matInput placeholder="Grupo" >
                       </mat-select>

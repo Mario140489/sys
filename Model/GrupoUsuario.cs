@@ -11,7 +11,6 @@ namespace WebApplication4.Model
       [Key]
       public int  idGrupoUsuario { get; set; }
       public string ds_GrupoUsuario { get; set; }
-      public DateTime dt_Cadastro { get; set; }
-      public DateTime dt_update { get; set; }
+      public bool Inativo { get; set; }
     }
 }

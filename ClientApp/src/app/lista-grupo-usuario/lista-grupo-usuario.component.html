@@ -1,1 +1,60 @@
-<p>lista-grupo-usuario works!</p>
+<nav class="font-tema" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a >{{menu}}</a></li>
+      <li class="breadcrumb-item"><a >{{nomemodulo}}</a></li>
+      <li class="breadcrumb-item"><a >{{form}}</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{buscar}}</li>
+    </ol>
+  </nav>
+  <div class="rightmg"><button mat-raised-button (click)="new()" class="btn-verde"><mat-icon style="font-size: 20px;margin-left: -7px;">add</mat-icon>Novo</button></div>
+  <p></p>
+  <div class="">
+      <mat-card class="temabar" >
+          <mat-card-header class="row">
+              <mat-card-title >Lista {{form}}</mat-card-title>
+          </mat-card-header>
+          <div class="temacontent">
+              <div class="col-sm-12" >
+                      <div>
+                        <div row>
+                          <mat-form-field class="row col-sm-4" style="margin-top: 10px">
+                            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Pesquisar">
+                            <mat-icon matSuffix>search</mat-icon>
+                          </mat-form-field>
+                        </div>
+                        <hr style="margin-top: 15px">
+                        <p></p>
+                        <table i18n mat-table [dataSource]="listData" style="width:100%" class="table-sm table-striped table-hover">
+                                <!--- Note that these columns can be defined in any order.
+                            The actual rendered columns are set as a property on the row definition" -->
+                                <!-- Position Column -->
+                                <ng-container matColumnDef="idGrupoUsuario">
+                                  <th class="" mat-header-cell *matHeaderCellDef> ID </th>
+                                  <td mat-cell *matCellDef="let element"> {{element.idGrupoUsuario}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="ds_GrupoUsuario">
+                                  <th mat-header-cell *matHeaderCellDef> Nome </th>
+                                  <td mat-cell *matCellDef="let element"> {{element.ds_GrupoUsuario}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="Inativo">
+                                  <th mat-header-cell *matHeaderCellDef> Inativo </th>
+                                  <td mat-cell *matCellDef="let element" >
+                                    <label *ngIf="element.inativo === false">Não</label>
+                                    <label *ngIf="element.inativo === true">Sim</label>
+                                  </td>
+                                </ng-container>
+                                <ng-container matColumnDef="Operaçao">
+                                  <th mat-header-cell *matHeaderCellDef>  </th>
+                                  <td style="text-align: right;" mat-cell *matCellDef="let element"> <button class="btn btn-sm btn-danger" (click)="delete(element.idUsuario)" matTooltip="Excluir" ><span class="fas fa-trash"></span></button> </td>
+                                </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                              </table>
+                        <mat-paginator [pageSizeOptions]="[5,10, 20]" showFirstLastButtons></mat-paginator>
+                      </div>
+                  
+                    </div>
+                  </div>
+      </mat-card>
+  </div>
+  
