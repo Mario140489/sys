@@ -19,8 +19,8 @@ export class GrupoUsuarioComponent implements OnInit {
   formulario:FormGroup;
   senha ="";
   idgrupo = null;
-  done =[];
-  todo =[];
+  done:any =[];
+  todo:any =[];
   constructor(private formBuider:FormBuilder,private router:Router,
     private maisnav:MaisNavComponent, private snackbar:MatSnackBar,
     private service:GrupoUsuarioService) { 
