@@ -34,6 +34,9 @@ export class ListaGrupoUsuarioComponent implements OnInit {
         });
       }
   ngOnInit() {
+    this.menu = this.maisnav.menu;
+    this.nomemodulo = this.maisnav.nomemodulo;
+    this.form = this.maisnav.formnome;
   }
 
 }
