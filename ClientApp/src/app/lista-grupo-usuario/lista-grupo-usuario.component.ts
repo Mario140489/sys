@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatSort, MatPaginator, PageEvent, MatSnackBar } from '@angular/material';
 import { MaisNavComponent } from '../mais-nav/mais-nav.component';
 import { Router } from '@angular/router';
+import {GrupoUsuarioService} from '../service/grupo-usuario.service'
 
 @Component({
   selector: 'app-lista-grupo-usuario',
@@ -20,8 +21,8 @@ export class ListaGrupoUsuarioComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   // MatPaginator Output
   pageEvent: PageEvent;
-  displayedColumns: string[] = ['idUsuario', 'nome','inativo','Operaçao'];
-  constructor(private maisnav:MaisNavComponent,
+  displayedColumns: string[] = ['idGrupoUsuario', 'ds_GrupoUsuario','Inativo','Operaçao'];
+  constructor(private maisnav:MaisNavComponent,private service:GrupoUsuarioService,
     private router:Router,private snackbar:MatSnackBar) { }
     sucesso(msg) {
       this.snackbar.open(msg, "", {
@@ -33,10 +34,40 @@ export class ListaGrupoUsuarioComponent implements OnInit {
           duration: 3000, panelClass: ['error'], verticalPosition: 'top', horizontalPosition: 'right'
         });
       }
-  ngOnInit() {
+ async ngOnInit() {
+    await this.CarregaGrupo();
     this.menu = this.maisnav.menu;
     this.nomemodulo = this.maisnav.nomemodulo;
     this.form = this.maisnav.formnome;
+  }
+  CarregaGrupo(){
+    this.service.ListarGrupousuario().subscribe(result => {
+      this.lista = result;
+      this.listData =new MatTableDataSource(this.lista);
+      this.listData.paginator = this.paginator;
+    }
+      )
+  }
+  new(){
+    this.maisnav.buscar = "Novo";
+    this.router.navigate(['GrupoUsuario']);
+  }
+  Alterar(id){
+   
+    this.router.navigate(['Usuario'])
+  }
+  async delete(id) {
+    debugger;
+      if (id == null || id < 0) {
+        
+      }
+      else {
+       /*this.service.delete(id).subscribe(async (result) => {
+          let msg = "Deletado com sucesso";
+          await this.CarregarUsuario();
+          this.sucesso(msg);
+        }, error => { this.erros(error); });*/
+      }
   }
 
 }

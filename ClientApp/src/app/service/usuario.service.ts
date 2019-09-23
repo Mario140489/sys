@@ -12,10 +12,15 @@ export class UsuarioService {
     "Login":"",
     "Senha":"",
     "Id_GrupoUsuario":"",
-    "Inativo":false
+    "Inativo":false,
+    "IdUsuario":"",
   }
+  IdUsuario = "";
   constructor(private http:HttpClient, @Inject('BASE_URL')baseUrl:string) {
     this.rootURL= baseUrl;
+   }
+   CarregarUsuario(id){
+     return this.http.get(this.rootURL +'api/Usuarios/'+ id).pipe();
    }
    listarUsuario(){
      return this.http.get(this.rootURL +'api/Usuarios').pipe(map(response => response))
@@ -24,19 +29,21 @@ export class UsuarioService {
      return this.http.get(this.rootURL +'api/GrupoUsuarios').pipe();
    }
    Adicionar(data){
-     this.Usuario.Nome = data.Nome;
-     this.Usuario.Login = data.Login;
-     this.Usuario.Senha = data.Senha;
-     this.Usuario.Id_GrupoUsuario = data.Grupo;
-     this.Usuario.Inativo = data.Inativo;
-     data = this.Usuario;
      return this.http.post(this.rootURL +'api/Usuarios/adicionar',data);
    }
    delete(id){
     return this.http.delete(this.rootURL +'api/Usuarios/'+ id)
    }
-   update(data){
-      return this.http.put(this.rootURL + 'api/Usuarios',data)
+   update(id,data){
+     debugger;
+    this.Usuario.Nome = data.Nome;
+    this.Usuario.Login = data.Login;
+    this.Usuario.Senha = data.Senha;
+    this.Usuario.Id_GrupoUsuario = data.id_GrupoUsuario;
+    this.Usuario.Inativo = data.Inativo;
+    this.Usuario.IdUsuario = id;
+    data = this.Usuario;
+      return this.http.put(this.rootURL + 'api/Usuarios/'+id,data)
     }
 
 }

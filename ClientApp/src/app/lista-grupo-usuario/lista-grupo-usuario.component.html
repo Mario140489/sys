@@ -28,15 +28,15 @@
                                 <!--- Note that these columns can be defined in any order.
                             The actual rendered columns are set as a property on the row definition" -->
                                 <!-- Position Column -->
-                                <ng-container matColumnDef="idUsuario">
+                                <ng-container matColumnDef="idGrupoUsuario">
                                   <th class="" mat-header-cell *matHeaderCellDef> ID </th>
-                                  <td mat-cell *matCellDef="let element"> {{element.idUsuario}} </td>
+                                  <td mat-cell *matCellDef="let element"> {{element.idGrupoUsuario}} </td>
                                 </ng-container>
-                                <ng-container matColumnDef="nome">
+                                <ng-container matColumnDef="ds_GrupoUsuario">
                                   <th mat-header-cell *matHeaderCellDef> Nome </th>
-                                  <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+                                  <td mat-cell *matCellDef="let element"> {{element.ds_GrupoUsuario}} </td>
                                 </ng-container>
-                                <ng-container matColumnDef="inativo">
+                                <ng-container matColumnDef="Inativo">
                                   <th mat-header-cell *matHeaderCellDef> Inativo </th>
                                   <td mat-cell *matCellDef="let element" >
                                     <label *ngIf="element.inativo === false">Não</label>
@@ -57,3 +57,4 @@
                   </div>
       </mat-card>
   </div>
+  

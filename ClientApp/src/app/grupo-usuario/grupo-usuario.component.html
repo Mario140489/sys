@@ -1,0 +1,85 @@
+<form (ngSubmit)="Adicionar()" [formGroup]="formulario" autocomplete="off">
+    <nav class="font-tema" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a >{{menu}}</a></li>
+          <li class="breadcrumb-item"><a >{{nomemodulo}}</a></li>
+          <li class="breadcrumb-item"><a >{{form}}</a></li>
+          <li class="breadcrumb-item active" aria-current="page">{{buscar}}</li>
+        </ol>
+      </nav>
+      <div class="row">
+        <div class="col-sm-3"><h3 class="font-tema">{{form}}</h3></div>
+      <div class="col-sm-9 rightmg">
+        <button class="mg-btn" mat-raised-button [routerLink]='["/ListarUsuario"]' color="accent"><mat-icon style="font-size: 20px;margin-left: -7px;">reply</mat-icon>Voltar</button>
+        <button type="submit" mat-raised-button color="primary"><mat-icon style="font-size: 20px;margin-left: -7px;">save</mat-icon>Salvar</button>
+      </div>
+    </div>
+      <p></p>
+      <mat-card class="temabar" >
+          <mat-card-header class="row">
+              <mat-card-title >Grupo de Usuário</mat-card-title>
+          </mat-card-header>
+          <div class="temacontent">
+              <div class="col-sm-12" >
+                      <div>
+                        <div row>
+                          <mat-form-field class=" primeiralinha col-sm-2" >
+                                <input disabled maxlength="150" matInput placeholder="Código" formControlName="idGrupoUsuario">
+                          </mat-form-field>
+                          <mat-form-field class=" primeiralinha col-sm-6" >
+                            <input required maxlength="150" matInput placeholder="Nome do Grupo" formControlName="ds_GrupoUsuario">
+                          </mat-form-field>        
+                          <div>
+                          <mat-checkbox class="col-sm-12" formControlName="Inativo">Inativo</mat-checkbox>
+                        </div>
+                        <br>
+                        </div>
+                      </div>
+                  
+                    </div>
+                  </div>
+      </mat-card> 
+      <P></P>
+      <mat-card class="temabar" >
+      <mat-card-header class="row">
+          <mat-card-title >Módulos</mat-card-title>
+      </mat-card-header>
+      <div class="temacontent">
+          <div class="col-sm-12" >
+                  <div>
+                    <div class="row">
+                        <div class=" col-sm-6 example-container" style="margin-top: 10px">
+                            <h6 class="font-tema">Ativo</h6>
+                            <div
+                              cdkDropList
+                              #todoList="cdkDropList"
+                              [cdkDropListData]="todo"
+                              [cdkDropListConnectedTo]="[doneList]"
+                              class="example-list"
+                              (cdkDropListDropped)="drop($event)">
+                              <div class="itendragdrop alert-success" *ngFor="let item of todo" cdkDrag>{{item.nome}}</div>
+                            </div>
+                          </div>
+                          
+                          <div class=" col-sm-6 example-container" style="margin-top: 10px">
+                            <h6 class="font-tema">Inativo</h6>
+                          
+                            <div
+                              cdkDropList
+                              #doneList="cdkDropList"
+                              [cdkDropListData]="done"
+                              [cdkDropListConnectedTo]="[todoList]"
+                              class="example-list"
+                              (cdkDropListDropped)="drop($event)">
+                              <div class="itendragdrop alert-danger" *ngFor="let item of done" cdkDrag>{{item.nome}}</div>
+                            </div>
+                          </div>
+              
+                    </div>
+                    <br>
+                  </div>
+                </div>
+              </div>
+    </mat-card> 
+    </form>
+    <P></P>m
