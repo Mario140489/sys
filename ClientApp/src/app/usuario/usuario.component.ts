@@ -48,7 +48,7 @@ export class UsuarioComponent implements OnInit {
     this.nomemodulo =this.maisnav.nomemodulo;
     this.form =this.maisnav.formnome;
     
-    this.carregargrupo();
+   await this.carregargrupo();
     if(this.idusuario > 0){
       this.maisnav.boleano = false;
      await this.CarregarUsuario(this.idusuario);

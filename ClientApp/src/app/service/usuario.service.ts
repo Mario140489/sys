@@ -39,7 +39,7 @@ export class UsuarioService {
     this.Usuario.Nome = data.Nome;
     this.Usuario.Login = data.Login;
     this.Usuario.Senha = data.Senha;
-    this.Usuario.Id_GrupoUsuario = data.Grupo;
+    this.Usuario.Id_GrupoUsuario = data.id_GrupoUsuario;
     this.Usuario.Inativo = data.Inativo;
     this.Usuario.IdUsuario = id;
     data = this.Usuario;

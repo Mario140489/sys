@@ -25,6 +25,7 @@ import {MatCheckboxModule,
   MatCardModule, MatExpansionModule,
   MatInputModule, MatFormFieldModule, ErrorStateMatcher, ShowOnDirtyErrorStateMatcher,
 } from '@angular/material';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { NgxCurrencyModule } from "ngx-currency"
 import { MaisNavComponent } from './mais-nav/mais-nav.component';
@@ -37,7 +38,8 @@ import {LoginService} from './service/login.service';
 import { ListarUsuarioComponent } from './listar-usuario/listar-usuario.component';
 import { UsuarioService } from './service/usuario.service';
 import { UsuarioComponent } from './usuario/usuario.component';
-import { ListaGrupoUsuarioComponent } from './lista-grupo-usuario/lista-grupo-usuario.component'
+import { ListaGrupoUsuarioComponent } from './lista-grupo-usuario/lista-grupo-usuario.component';
+import { GrupoUsuarioComponent } from './grupo-usuario/grupo-usuario.component'
 registerLocaleData(br, 'pt-BR');
 //import $ from "JQuery";
 @NgModule({
@@ -51,6 +53,7 @@ registerLocaleData(br, 'pt-BR');
     ListarUsuarioComponent,
     UsuarioComponent,
     ListaGrupoUsuarioComponent,
+    GrupoUsuarioComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -62,7 +65,8 @@ registerLocaleData(br, 'pt-BR');
       { path: 'home', component: HomeComponent},
       { path: 'Login', component: LoginComponent},
       { path: 'Usuario', component: UsuarioComponent},
-      { path: 'ListarGrupoUsuario', component: ListaGrupoUsuarioComponent}
+      { path: 'ListarGrupoUsuario', component: ListaGrupoUsuarioComponent},
+      { path: 'GrupoUsuario', component:GrupoUsuarioComponent}
     ]),
     NgxMaskModule.forRoot(),
     TooltipModule.forRoot(),
@@ -95,6 +99,7 @@ registerLocaleData(br, 'pt-BR');
     MatRadioModule,
     MaterialFileInputModule,
     MatPaginatorModule,
+    DragDropModule,
   ],
   providers: [MatDatepickerModule,AppComponent,LoginService,UsuarioService,MaisNavComponent,
     { provide: LOCALE_ID, useValue: "pt-br" }

@@ -34,8 +34,8 @@ export class ListaGrupoUsuarioComponent implements OnInit {
           duration: 3000, panelClass: ['error'], verticalPosition: 'top', horizontalPosition: 'right'
         });
       }
-  ngOnInit() {
-    this.CarregaGrupo();
+ async ngOnInit() {
+    await this.CarregaGrupo();
     this.menu = this.maisnav.menu;
     this.nomemodulo = this.maisnav.nomemodulo;
     this.form = this.maisnav.formnome;
@@ -47,6 +47,27 @@ export class ListaGrupoUsuarioComponent implements OnInit {
       this.listData.paginator = this.paginator;
     }
       )
+  }
+  new(){
+    this.maisnav.buscar = "Novo";
+    this.router.navigate(['GrupoUsuario']);
+  }
+  Alterar(id){
+   
+    this.router.navigate(['Usuario'])
+  }
+  async delete(id) {
+    debugger;
+      if (id == null || id < 0) {
+        
+      }
+      else {
+       /*this.service.delete(id).subscribe(async (result) => {
+          let msg = "Deletado com sucesso";
+          await this.CarregarUsuario();
+          this.sucesso(msg);
+        }, error => { this.erros(error); });*/
+      }
   }
 
 }

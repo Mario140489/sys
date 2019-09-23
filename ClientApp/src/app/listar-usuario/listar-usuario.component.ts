@@ -37,21 +37,27 @@ export class ListarUsuarioComponent implements OnInit {
           duration: 3000, panelClass: ['error'], verticalPosition: 'top', horizontalPosition: 'right'
         });
       }
-  ngOnInit() {
-    this.CarregarUsuario();
+ async ngOnInit() {
+    await this.CarregarUsuario();
     this.menu = this.maisnav.menu;
     this.nomemodulo = this.maisnav.nomemodulo;
     this.form = this.maisnav.formnome;
   }
  async CarregarUsuario(){
     this.service.listarUsuario().subscribe(async result =>{
-    this.lista =result;
-    this.listData = new MatTableDataSource(this.lista);
-    this.listData.paginator = this.paginator;
+     this.lista = result;
+
   })
   }
   applyFilter(filterValue: string) {
+    if(filterValue == ""){
+      this.listData = new MatTableDataSource();
+    }
+    else{
+    this.listData = new MatTableDataSource(this.lista);
+    this.listData.paginator = this.paginator;
     this.listData.filter = filterValue.trim().toLowerCase();
+    }
   }
   new(){
     this.service.IdUsuario = "";
