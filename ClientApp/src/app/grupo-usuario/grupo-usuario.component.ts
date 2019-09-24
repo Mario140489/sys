@@ -54,6 +54,7 @@ export class GrupoUsuarioComponent implements OnInit {
   }
   async carregaModulos(){debugger;
    this.done = await this.service.ListarModulos().toPromise();
+   this.maisnav.boleano = true;
   }
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {

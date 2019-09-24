@@ -49,6 +49,7 @@ export class ListaGrupoUsuarioComponent implements OnInit {
       )
   }
   new(){
+    this.maisnav.boleano = false;
     this.maisnav.buscar = "Novo";
     this.router.navigate(['GrupoUsuario']);
   }

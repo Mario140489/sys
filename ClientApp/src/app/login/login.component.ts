@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
         resultado =>{
           modulos = resultado
           this.maisnav.modules = modulos;
-          this.maisnav.user = usu[0].nome;
+          this.maisnav.user = usu[0];
           this.router.navigate(['home']);
           this.maisnav.boleano = true;
         }

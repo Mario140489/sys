@@ -16,6 +16,6 @@ export class GrupoUsuarioService {
       return this.http.get(this.rootURL +'api/GrupoUsuarios').pipe();
     }
     ListarModulos(){
-      return this.http.get(this.rootURL +'api/SubModulos/').pipe();
+      return this.http.get(this.rootURL +'api/Modulos/').pipe();
     }
 }

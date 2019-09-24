@@ -14,7 +14,7 @@ import { async } from '@angular/core/testing';
   styleUrls: ['./mais-nav.component.css']
 })
 export class MaisNavComponent {
-  user:string = "";
+  user:any = null;
   navlateral =false;
   btnhidden = true;
   boleano = true;
