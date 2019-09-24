@@ -43,7 +43,19 @@ export class GrupoUsuarioComponent implements OnInit {
     this.nomemodulo =this.maisnav.nomemodulo;
     this.form =this.maisnav.formnome;
    await this.carregaModulos();
+   if(this.idgrupo > 0){
+     this.maisnav.boleano = false;
+     await this.CarregarGrupo(this.idgrupo);
+   }
   }
+  async CarregarGrupo(id){
+     const usuario = await this.service.Grupo(id).toPromise();
+     this.buscar= usuario['nome'];
+     this.formulario.get('idGrupoUsuario').setValue(usuario['idGrupoUsuario']);
+     this.formulario.get('ds_GrupoUsuario').setValue(usuario['ds_GrupoUsuario']);
+     this.formulario.get('Inativo').setValue(usuario['inativo']);
+     this.maisnav.boleano = true;
+   }
   confiform(){
     this.formulario = this.formBuider.group({
       idGrupoUsuario:'',
@@ -52,7 +64,31 @@ export class GrupoUsuarioComponent implements OnInit {
     })
     this.formulario.controls['idGrupoUsuario'].disable();
   }
-  async carregaModulos(){debugger;
+  Adicionar(){
+    this.maisnav.boleano = false;
+  if(this.formulario.valid){
+    if(this.formulario.get('idGrupoUsuario').value > 0){
+      this.service.update( this.formulario.get('IdUsuario').value , this.formulario.value)
+      .subscribe(result =>{
+        let msg ="Salvo com sucesso;";
+        this.sucesso(msg);
+        this.formulario.reset();
+        this.maisnav.boleano = true;
+        this.router.navigate(['ListarGrupoUsuario']);
+      }, error =>{this.erros(JSON.stringify(error)); this.maisnav.boleano = true})
+    }
+  else{
+    this.service.Adicionar(this.formulario.value)
+    .subscribe(result =>{
+      let msg ="Salvo com sucesso.";
+      this.sucesso(msg);
+      this.maisnav.boleano = true;
+      this.router.navigate(['ListarGrupoUsuario']);
+    }, error =>{this.erros(JSON.stringify(error)); this.maisnav.boleano = true})
+  }
+  }
+}
+  async carregaModulos(){
    this.done = await this.service.ListarModulos().toPromise();
    this.maisnav.boleano = true;
   }

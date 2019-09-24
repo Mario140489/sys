@@ -69,7 +69,6 @@ export class ListarUsuarioComponent implements OnInit {
     this.router.navigate(['Usuario'])
   }
   async delete(id) {
-    debugger;
       if (id == null || id < 0) {
         
       }

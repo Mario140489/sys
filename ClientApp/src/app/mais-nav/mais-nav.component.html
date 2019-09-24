@@ -35,8 +35,8 @@
       </div>
       <div class="col-sm-5 right"  dropdown >
         <button  mat-icon-button><mat-icon >account_circle</mat-icon> </button>
-           <label style="font-size:14px"  id="user">{{user.nome}}</label>
-           <button id="button-basic" *ngIf="user != null" style="margin-right: -25px"  dropdownToggle  type="button" mat-icon-button matTooltip="Menu" aria-controls="dropdown-basic">
+           <label *ngIf="user.length > 0" style="font-size:14px"  id="user" >{{id}} - {{user}}</label>
+           <button id="button-basic" *ngIf="user.length > 0" style="margin-right: -25px"  dropdownToggle  type="button" mat-icon-button matTooltip="Menu" aria-controls="dropdown-basic">
               <mat-icon>keyboard_arrow_down</mat-icon>
           </button>
            <div class="">

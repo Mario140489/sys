@@ -45,7 +45,8 @@
                                 </ng-container>
                                 <ng-container matColumnDef="Operaçao">
                                   <th mat-header-cell *matHeaderCellDef>  </th>
-                                  <td style="text-align: right;" mat-cell *matCellDef="let element"> <button class="btn btn-sm btn-danger" (click)="delete(element.idUsuario)" matTooltip="Excluir" ><span class="fas fa-trash"></span></button> </td>
+                                  <td style="text-align: right;" mat-cell *matCellDef="let element"> 
+                                  <button class="btn btn-sm btn-primary" (click)="Alterar(element.idGrupoUsuario)" matTooltip="Alterar" ><span class="fas fa-pen"></span></button> <button class="btn btn-sm btn-danger" style="margin-left: 3px" (click)="delete(element.idGrupoUsuario)" matTooltip="Excluir" ><span class="fas fa-trash"></span></button> </td>
                                 </ng-container>
                                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

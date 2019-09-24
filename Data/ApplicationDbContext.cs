@@ -20,5 +20,6 @@ namespace WebApplication4.Data
         public DbSet<Modulos> Modulos { get; set; }
         public DbSet<SubModulos> SubModulos { get; set; }
         public DbSet<Formularios> Formularios { get; set; }
+        public DbSet<GrupoXModulos> grupoXModulos { get; set; }
     }
 }

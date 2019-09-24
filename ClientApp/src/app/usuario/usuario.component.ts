@@ -55,7 +55,6 @@ export class UsuarioComponent implements OnInit {
     }
   }
  async CarregarUsuario(id){
-   debugger;
     const usuario = await this.usario.CarregarUsuario(id).toPromise();
     this.buscar= usuario['nome'];
     this.formulario.get('IdUsuario').setValue(usuario['idUsuario']);
@@ -98,7 +97,6 @@ export class UsuarioComponent implements OnInit {
     return condition ? { passwordsDoNotMatch: true} : null;
   }
   Adicionar(){
-    debugger;
       this.maisnav.boleano = false;
     if(this.formulario.valid){
       if(this.formulario.get('IdUsuario').value > 0){

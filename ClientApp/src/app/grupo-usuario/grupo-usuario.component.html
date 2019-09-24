@@ -10,7 +10,7 @@
       <div class="row">
         <div class="col-sm-3"><h3 class="font-tema">{{form}}</h3></div>
       <div class="col-sm-9 rightmg">
-        <button class="mg-btn" mat-raised-button [routerLink]='["/ListarUsuario"]' color="accent"><mat-icon style="font-size: 20px;margin-left: -7px;">reply</mat-icon>Voltar</button>
+        <button class="mg-btn" mat-raised-button [routerLink]='["/ListarGrupoUsuario"]' color="accent"><mat-icon style="font-size: 20px;margin-left: -7px;">reply</mat-icon>Voltar</button>
         <button class="mg-btn btnorange" mat-raised-button ><mat-icon style="font-size: 20px;margin-left: -7px;">playlist_add_check</mat-icon>Permições</button>
         <button type="submit" mat-raised-button color="primary"><mat-icon style="font-size: 20px;margin-left: -7px;">save</mat-icon>Salvar</button>
       </div>
@@ -58,7 +58,8 @@
                               [cdkDropListConnectedTo]="[doneList]"
                               class="example-list"
                               (cdkDropListDropped)="drop($event)">
-                              <div class="itendragdrop alert-success" *ngFor="let item of todo" cdkDrag>{{item.nome}}</div>
+                              <div class="itendragdrop alert-success" *ngFor="let item of todo" cdkDrag><input hidden value="{{item.id_Modulos}}" >
+                                {{item.nome}}</div>
                             </div>
                           </div>
                           
@@ -72,7 +73,8 @@
                               [cdkDropListConnectedTo]="[todoList]"
                               class="example-list"
                               (cdkDropListDropped)="drop($event)">
-                              <div class="itendragdrop alert-danger" *ngFor="let item of done" cdkDrag>{{item.nome}}</div>
+                              <div class="itendragdrop alert-danger" *ngFor="let item of done" cdkDrag><input hidden value="{{item.id_Modulos}}" >
+                                {{item.nome}}</div>
                             </div>
                           </div>
               

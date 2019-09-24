@@ -16,6 +16,22 @@ export class GrupoUsuarioService {
       return this.http.get(this.rootURL +'api/GrupoUsuarios').pipe();
     }
     ListarModulos(){
-      return this.http.get(this.rootURL +'api/Modulos/').pipe();
+      return  this.http.get(this.rootURL +'api/Modulos/').pipe();
     }
+    delete(id){
+      return this.http.delete(this.rootURL +'api/GrupoUsuarios/'+ id);
+     }
+     Grupo(id){
+      return this.http.get(this.rootURL + 'api/GrupoUsuarios/'+ id).pipe();
+     }
+     Adicionar(data){
+       return this.http.post(this.rootURL + 'api/GrupoUsuarios',data);
+     }
+     update(id,data){
+       data['idGrupoUsuario'] = id
+       return this.http.put(this.rootURL + 'api/GrupoUsuarios/' + id , data);
+     }
+     ListaModuloAtivo(id){
+      return this.http.get(this.rootURL +'api/GrupoXModulos/'+ id).pipe();
+     }
 }

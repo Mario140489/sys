@@ -51,11 +51,13 @@ export class ListaGrupoUsuarioComponent implements OnInit {
   new(){
     this.maisnav.boleano = false;
     this.maisnav.buscar = "Novo";
+    this.service.idgrupo = null;
     this.router.navigate(['GrupoUsuario']);
   }
   Alterar(id){
-   
-    this.router.navigate(['Usuario'])
+    this.maisnav.boleano = false;
+    this.service.idgrupo = id;
+    this.router.navigate(['GrupoUsuario'])
   }
   async delete(id) {
     debugger;
@@ -63,11 +65,11 @@ export class ListaGrupoUsuarioComponent implements OnInit {
         
       }
       else {
-       /*this.service.delete(id).subscribe(async (result) => {
+       this.service.delete(id).subscribe(async (result) => {
           let msg = "Deletado com sucesso";
-          await this.CarregarUsuario();
+          await this.CarregaGrupo();
           this.sucesso(msg);
-        }, error => { this.erros(error); });*/
+        }, error => { this.erros("Não é possivel Excluir pois a dados usando esse Grupo"); });
       }
   }
 
