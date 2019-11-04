@@ -39,7 +39,8 @@ import { ListarUsuarioComponent } from './listar-usuario/listar-usuario.componen
 import { UsuarioService } from './service/usuario.service';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { ListaGrupoUsuarioComponent } from './lista-grupo-usuario/lista-grupo-usuario.component';
-import { GrupoUsuarioComponent } from './grupo-usuario/grupo-usuario.component'
+import { GrupoUsuarioComponent } from './grupo-usuario/grupo-usuario.component';
+import { CardapioComponent } from './cardapio/cardapio.component'
 registerLocaleData(br, 'pt-BR');
 //import $ from "JQuery";
 @NgModule({
@@ -54,6 +55,7 @@ registerLocaleData(br, 'pt-BR');
     UsuarioComponent,
     ListaGrupoUsuarioComponent,
     GrupoUsuarioComponent,
+    CardapioComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
