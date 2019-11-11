@@ -4,7 +4,8 @@ import {MaisNavComponent} from '../mais-nav/mais-nav.component';
 import {UsuarioService} from '../service/usuario.service';
 import { ErrorStateMatcher, MatSnackBar } from '@angular/material';
 import {Router } from '@angular/router';
-
+import { async } from '@angular/core/testing';
+import {ProdCardapioService} from '../service/prod-cardapio.service'
 @Component({
   selector: 'app-cardapio',
   templateUrl: './cardapio.component.html',
@@ -15,10 +16,13 @@ export class CardapioComponent implements OnInit {
   nomemodulo ="";
   form ="";
   buscar = "Buscar";
-  GrupoUsuario =null;
   formulario:FormGroup;
+  idprodcardapio =null;
   constructor(private formBuider:FormBuilder,private router:Router,
-    private maisnav:MaisNavComponent,private snackbar:MatSnackBar) { }
+    private maisnav:MaisNavComponent,private snackbar:MatSnackBar,private service:ProdCardapioService) { 
+      this.confiform();
+      this.idprodcardapio = this.service.idprodcardapio;
+    }
 
   ngOnInit() {
     this.buscar = this.maisnav.buscar;
@@ -38,11 +42,12 @@ export class CardapioComponent implements OnInit {
     }
     confiform(){
       this.formulario = this.formBuider.group({
-        id_cardapio:'',
-        Nome:'',
-        preço:'',
+        idprodcardapio:'',
+        nome:'',
+        preco:'',
+        inativo:false
       })
       
-      this.formulario.controls['IdUsuario'].disable();
+      this.formulario.controls['idprodcardapio'].disable();
     }
 }

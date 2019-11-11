@@ -21,5 +21,6 @@ namespace WebApplication4.Data
         public DbSet<SubModulos> SubModulos { get; set; }
         public DbSet<Formularios> Formularios { get; set; }
         public DbSet<GrupoXModulos> grupoXModulos { get; set; }
+        public DbSet<ProdCardapio> ProdCardapio { get; set; }
     }
 }

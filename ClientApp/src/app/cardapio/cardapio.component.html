@@ -1,1 +1,45 @@
-<p>cardapio works!</p>
+<form (ngSubmit)="Adicionar()" [formGroup]="formulario" autocomplete="off">
+    <nav class="font-tema" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a >{{menu}}</a></li>
+          <li class="breadcrumb-item"><a >{{nomemodulo}}</a></li>
+          <li class="breadcrumb-item"><a >{{form}}</a></li>
+          <li class="breadcrumb-item active" aria-current="page">{{buscar}}</li>
+        </ol>
+      </nav>
+      <div class="row">
+        <div class="col-sm-3"><h3 class="font-tema">{{form}}</h3></div>
+      <div class="col-sm-9 rightmg">
+        <button class="mg-btn" mat-raised-button [routerLink]='["/ListarUsuario"]' color="accent"><mat-icon style="font-size: 20px;margin-left: -7px;">reply</mat-icon>Voltar</button>
+        <button type="submit" mat-raised-button color="primary"><mat-icon style="font-size: 20px;margin-left: -7px;">save</mat-icon>Salvar</button>
+      </div>
+    </div>
+      <p></p>
+      <mat-card class="temabar" >
+          <mat-card-header class="row">
+              <mat-card-title >Informações de Acesso</mat-card-title>
+          </mat-card-header>
+          <div class="temacontent">
+              <div class="col-sm-12" >
+                      <div>
+                        <div row>
+                          <mat-form-field class=" primeiralinha col-sm-2" >
+                                <input disabled maxlength="150" matInput placeholder="Código" formControlName="idprodcardapio">
+                          </mat-form-field>
+                          <mat-form-field class=" primeiralinha col-sm-6" >
+                            <input required maxlength="150" matInput placeholder="Nome" formControlName="nome">
+                          </mat-form-field>
+                          <mat-form-field class=" primeiralinha col-sm-4">
+                              <input required maxlength="50" matInput placeholder="preco" formControlName="preco">
+                          </mat-form-field> 
+                          <div>
+                          <mat-checkbox class="col-sm-12" formControlName="inativo">Inativo</mat-checkbox>
+                        </div>
+                        <br>
+                        </div>
+                      </div>
+                  
+                    </div>
+                  </div>
+      </mat-card>
+    </form>

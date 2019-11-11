@@ -70,7 +70,9 @@ registerLocaleData(br, 'pt-BR');
       { path: 'Login', component: LoginComponent},
       { path: 'Usuario', component: UsuarioComponent},
       { path: 'ListarGrupoUsuario', component: ListaGrupoUsuarioComponent},
-      { path: 'GrupoUsuario', component:GrupoUsuarioComponent}
+      { path: 'GrupoUsuario', component:GrupoUsuarioComponent},
+      { path: 'ListarCadapio', component:ListarCardapioComponent},
+      { path: 'Cardapio', component:CardapioComponent}
     ]),
     NgxMaskModule.forRoot(),
     TooltipModule.forRoot(),
