@@ -15,11 +15,8 @@ export class ProdCardapioService {
   delete(id){
     return this.http.delete(this.rootURL +'api/GrupoUsuarios/'+ id);
    }
-   Grupo(id){
-    return this.http.get(this.rootURL + 'api/GrupoUsuarios/'+ id).pipe();
-   }
    Adicionar(data){
-     return this.http.post(this.rootURL + 'api/GrupoUsuarios',data);
+     return this.http.post(this.rootURL + 'api/ProdCardapios',data);
    }
    update(id,data){
      data['idGrupoUsuario'] = id

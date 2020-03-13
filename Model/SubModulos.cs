@@ -13,6 +13,6 @@ namespace WebApplication4.Model
         public int Id_Modulos { get; set; }
         public string Nome { get; set; }
         public string Icon { get; set; }
-        public virtual Formularios Formularios { get; set; }
+        //public virtual Formularios Formularios { get; set; }
     }
 }

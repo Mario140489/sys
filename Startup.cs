@@ -1,18 +1,19 @@
+using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using WebApplication4.Data;
+using Microsoft.AspNetCore.SpaServices.AngularCli;
 
 namespace WebApplication4
 {
     public class Startup
     {
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -23,22 +24,27 @@ namespace WebApplication4
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseMySql(
-                Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+           Configuration.GetConnectionString("DefaultConnection")));
+            services.AddIdentityCore<IdentityUser>().AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddControllers();
+            services.AddCors();
+            services.AddControllers();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            // In production, the Angular files will be served from this directory
+
+
+
+            // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
-                configuration.RootPath = "ClientApp/dist";
+                configuration.RootPath = "ClientApp/build";
             });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -47,6 +53,7 @@ namespace WebApplication4
             else
             {
                 app.UseExceptionHandler("/Error");
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
@@ -54,18 +61,18 @@ namespace WebApplication4
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
-            app.UseMvc(routes =>
+            app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "default",
-                    template: "{controller}/{action=Index}/{id?}");
+                    pattern: "{controller}/{action=Index}/{id?}");
             });
 
             app.UseSpa(spa =>
             {
-                // To learn more about options for serving an Angular SPA from ASP.NET Core,
-                // see https://go.microsoft.com/fwlink/?linkid=864501
-
                 spa.Options.SourcePath = "ClientApp";
 
                 if (env.IsDevelopment())
